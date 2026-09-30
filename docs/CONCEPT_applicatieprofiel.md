@@ -246,20 +246,20 @@ leveren wat kan functioneren als datering.
 \- Keuzeveld 3: er wordt sterk aanbevolen ten minste één veld aan te
 leveren dat iets beschrijft van en/of over het object (CreativeWork).
 
-| *Entiteit* | *Veld* | *Betekenis* | *Verplicht* | *Type* |  |
-|----|----|----|----|----|----|
-| MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |  |
-| CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |  |
-| CreativeWork | Schema:isPartOf\>schema:Dataset | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |  |
-| CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |  |
-| CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |  |
-| CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |  |
-| CreativeWork | schema:temporal | Periode van vervaardiging | Keuzeveld 2 – sterk aanbevolen | String |  |
-| CreativeWork | schema:dateCreated | Vervaardigingsdatum | Keuzeveld 2 – sterk aanbevolen | Date |  |
-| CreativeWork | schema:description | Beschrijving van het object | Keuzeveld 3 – sterk aanbevolen | String |  |
-| CreativeWork | schema:material | Materiaal | Keuzeveld 3 – sterk aanbevolen | String/URI |  |
-| CreativeWork | schema:size | Afmetingen | Keuzeveld 3 – sterk aanbevolen | String/QuantitativeValue |  |
-| CreativeWork | schema:locationCreated | Plaats van productie of vervaardiging | Keuzeveld 3 – sterk aanbevolen | String/URI |  |
+| *Entiteit* | *Veld* | *Betekenis* | *Verplicht* | *Type* |
+|----|----|----|----|----|
+| MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |
+| CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |
+| CreativeWork | Schema:isPartOf\>schema:Dataset | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
+| CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |
+| CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |
+| CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |
+| CreativeWork | schema:temporal | Periode van vervaardiging | Keuzeveld 2 – sterk aanbevolen | String |
+| CreativeWork | schema:dateCreated | Vervaardigingsdatum | Keuzeveld 2 – sterk aanbevolen | Date |
+| CreativeWork | schema:description | Beschrijving van het object | Keuzeveld 3 – sterk aanbevolen | String |
+| CreativeWork | schema:material | Materiaal | Keuzeveld 3 – sterk aanbevolen | String/URI |
+| CreativeWork | schema:size | Afmetingen | Keuzeveld 3 – sterk aanbevolen | String/QuantitativeValue |
+| CreativeWork | schema:locationCreated | Plaats van productie of vervaardiging | Keuzeveld 3 – sterk aanbevolen | String/URI |
 
 ## 1.2.3 Aanbevolen en optionele velden
 
