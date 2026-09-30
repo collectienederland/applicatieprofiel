@@ -110,9 +110,9 @@
 
 [1.3.5. schema:AdministrativeArea\*](#135-schemaadministrativearea)
 
-[1.3.5.1 Schema:name](#1351-schemaname-1)
+[1.3.5.1 Schema:name](#1351-schemaname)
 
-[1.3.5.2 Schema:sameAs](#1352-schemasameas-1)
+[1.3.5.2 Schema:sameAs](#1352-schemasameas)
 
 [1.3.6 schema:PropertyValue](#136-schemapropertyvalue)
 
@@ -126,33 +126,33 @@
 
 [1.3.7.1 Schema:addressRegion\*](#1371-schemaaddressregion)
 
-[1.3.7.2 Schema:name](#1372-schemaname-2)
+[1.3.7.2 Schema:name](#1372-schemaname)
 
-[1.3.7.3 Schema:sameAs](#1373-schemasameas-2)
+[1.3.7.3 Schema:sameAs](#1373-schemasameas)
 
 [1.3.8 schema:Occupation, schema:DefinedTerm](#138-schemaoccupation-schemadefinedterm)
 
-[1.3.8.1 Schema:name](#1381-schemaname-3)
+[1.3.8.1 Schema:name](#1381-schemaname)
 
-[1.3.8.2 Schema:sameAs](#1382-schemasameas-3)
+[1.3.8.2 Schema:sameAs](#1382-schemasameas)
 
 [1.3.9. schema:DefinedTerm](#139-schemadefinedterm)
 
-[1.3.9.1 Schema:name](#1391-schemaname-4)
+[1.3.9.1 Schema:name](#1391-schemaname)
 
-[1.3.9.2 Schema:sameAs](#1392-schemasameas-4)
+[1.3.9.2 Schema:sameAs](#1392-schemasameas)
 
 [1.3.10 schema:Product\*](#1310-schemaproduct)
 
-[1.3.10.1 Schema:name](#13101-schemaname-5)
+[1.3.10.1 Schema:name](#13101-schemaname)
 
-[1.3.10.2 Schema:sameAs](#13102-schemasameas-5)
+[1.3.10.2 Schema:sameAs](#13102-schemasameas)
 
 [1.3.11 schema:Text\*, schema:DefinedTerm](#1311-schematext-schemadefinedterm)
 
-[1.3.11.1 Schema:name](#13111-schemaname-6)
+[1.3.11.1 Schema:name](#13111-schemaname)
 
-[1.3.11.2 Schema:sameAs](#13112-schemasameas-6)
+[1.3.11.2 Schema:sameAs](#13112-schemasameas)
 
 # 1.1 Inleiding
 
