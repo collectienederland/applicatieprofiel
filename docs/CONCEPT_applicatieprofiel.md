@@ -2,8 +2,6 @@
 
 # Inhoudsopgave
 
-[Applicatieprofiel voor CollectieNederland.nl](#applicatieprofiel-voor-collectienederland.nl)
-
 [1.1 Inleiding](#11-inleiding)
 
 [Definities](#definities)
