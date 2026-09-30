@@ -2,192 +2,157 @@
 
 # Inhoudsopgave
 
-[Applicatieprofiel voor CollectieNederland.nl
-[1](#applicatieprofiel-voor-collectienederland.nl)](#applicatieprofiel-voor-collectienederland.nl)
+[Applicatieprofiel voor CollectieNederland.nl](#applicatieprofiel-voor-collectienederland.nl)
 
-[1.1 Inleiding [2](#inleiding)](#inleiding)
+[1.1 Inleiding](#11-inleiding)
 
-[Definities [3](#definities)](#definities)
+[Definities](#definities)
 
-[1.2 Velden voor CollectieNederland.nl
-[3](#velden-voor-collectienederland.nl)](#velden-voor-collectienederland.nl)
+[1.2 Velden voor CollectieNederland.nl](#12-velden-voor-collectienederland.nl)
 
-[1.2.1 Minimale en sterk aanbevolen velden
-[3](#minimale-en-sterk-aanbevolen-velden)](#minimale-en-sterk-aanbevolen-velden)
+[1.2.1 Minimale en sterk aanbevolen velden](#121-minimale-en-sterk-aanbevolen-velden)
 
-[1.2.2 Overzichtstabel minimale en sterk aanbevolen velden
-[3](#overzichtstabel-minimale-en-sterk-aanbevolen-velden)](#overzichtstabel-minimale-en-sterk-aanbevolen-velden)
+[1.2.2 Overzichtstabel minimale en sterk aanbevolen velden](#122-overzichtstabel-minimale-en-sterk-aanbevolen-velden)
 
-[1.2.3 Aanbevolen en optionele velden
-[5](#aanbevolen-en-optionele-velden)](#aanbevolen-en-optionele-velden)
+[1.2.3 Aanbevolen en optionele velden](#123-aanbevolen-en-optionele-velden)
 
-[1.2.4 Overzichtstabel aanbevolen en optionele velden
-[6](#overzichtstabel-aanbevolen-en-optionele-velden)](#overzichtstabel-aanbevolen-en-optionele-velden)
+[1.2.4 Overzichtstabel aanbevolen en optionele velden](#124-overzichtstabel-aanbevolen-en-optionele-velden)
 
-[1.2.5 Afwijkingen ten opzichte van het NDE applicatieprofiel
-[7](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
+[1.2.5 Afwijkingen ten opzichte van het NDE applicatieprofiel](#125-afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
 
-[1.2.6 Thesauri-gebruik [8](#thesauri-gebruik)](#thesauri-gebruik)
+[1.2.6 Thesauri-gebruik](#126-thesauri-gebruik)
 
-[1.3 CollectieNederland.nl-applicatieprofiel
-[9](#collectienederland.nl-applicatieprofiel)](#collectienederland.nl-applicatieprofiel)
+[1.3 CollectieNederland.nl-applicatieprofiel](#13-collectienederland.nl-applicatieprofiel)
 
-[1.3.1 Schema:CreativeWork
-[9](#schemacreativework)](#schemacreativework)
+[1.3.1 Schema:CreativeWork](#131-schemacreativework)
 
-[1.3.1.1 schema:name (keuzeveld 1)
-[9](#schemaname-keuzeveld-1)](#schemaname-keuzeveld-1)
+[1.3.1.1 schema:name (keuzeveld 1)](#1311-schemaname-keuzeveld-1)
 
-[1.3.1.2 schema:alternateName \*
-[9](#schemaalternatename)](#schemaalternatename)
+[1.3.1.2 schema:alternateName \*](#1312-schemaalternatename)
 
-[1.3.1.3 Schema:creditText\* [10](#schemacredittext)](#schemacredittext)
+[1.3.1.3 Schema:creditText\*](#1313-schemacredittext)
 
-[1.3.1.4 schema:publisher \* [10](#schemapublisher)](#schemapublisher)
+[1.3.1.4 schema:publisher \*](#1314-schemapublisher)
 
-[1.3.1.5 schema:datePublished\*
-[10](#schemadatepublished)](#schemadatepublished)
+[1.3.1.5 schema:datePublished\*](#1315-schemadatepublished)
 
-[1.3.1.6 Schema:citation\* [11](#schemacitation)](#schemacitation)
+[1.3.1.6 Schema:citation\*](#1316-schemacitation)
 
-[1.3.1.7 schema:dateCreated (keuzeveld 2)
-[11](#schemadatecreated-keuzeveld-2)](#schemadatecreated-keuzeveld-2)
+[1.3.1.7 schema:dateCreated (keuzeveld 2)](#1317-schemadatecreated-keuzeveld-2)
 
-[1.3.1.8 schema:temporal \* [12](#schematemporal)](#schematemporal)
+[1.3.1.8 schema:temporal \*](#1318-schematemporal)
 
-[1.3.1.9 schema:license\* [12](#schemalicense)](#schemalicense)
+[1.3.1.9 schema:license\*](#1319-schemalicense)
 
-[1.3.1.10 schema:description (keuzeveld 3)
-[12](#schemadescription-keuzeveld-3)](#schemadescription-keuzeveld-3)
+[1.3.1.10 schema:description (keuzeveld 3)](#13110-schemadescription-keuzeveld-3)
 
-[1.3.1.11 schema:size (keuzeveld 3)
-[13](#schemasize-keuzeveld-3)](#schemasize-keuzeveld-3)
+[1.3.1.11 schema:size (keuzeveld 3)](#13111-schemasize-keuzeveld-3)
 
-[1.3.1.12 schema:url [13](#schemaurl)](#schemaurl)
+[1.3.1.12 schema:url](#13112-schemaurl)
 
-[1.3.1.13 schema:isPartOf \>Dataset *of* \>CreativeWork
-[13](#schemaispartof-dataset-of-creativework)](#schemaispartof-dataset-of-creativework)
+[1.3.1.13 schema:isPartOf \>Dataset *of* \>CreativeWork](#13113-schemaispartof-dataset-of-creativework)
 
-[1.3.1.14 schema:sdDatePublished
-[14](#schemasddatepublished)](#schemasddatepublished)
+[1.3.1.14 schema:sdDatePublished](#13114schemasddatepublished)
 
-[1.3.1.15 schema:additionalType (Keuzeveld 1)
-[14](#schemaadditionaltype-keuzeveld-1)](#schemaadditionaltype-keuzeveld-1)
+[1.3.1.15 schema:additionalType (Keuzeveld 1)](#13115-schemaadditionaltype-keuzeveld-1)
 
-[1.3.1.16 Schema:material (keuzeveld 3)
-[14](#schemamaterial-keuzeveld-3)](#schemamaterial-keuzeveld-3)
+[1.3.1.16 Schema:material (keuzeveld 3)](#13116-schemamaterial-keuzeveld-3)
 
-[1.3.1.17 schema:genre [15](#schemagenre)](#schemagenre)
+[1.3.1.17 schema:genre](#13117-schemagenre)
 
-[1.3.1.18 schema:about [15](#schemaabout)](#schemaabout)
+[1.3.1.18 schema:about](#13118-schemaabout)
 
-[1.3.1.19 schema:identifier [16](#schemaidentifier)](#schemaidentifier)
+[1.3.1.19 schema:identifier](#13119schemaidentifier)
 
-[1.3.1.20 schema:creator [16](#schemacreator)](#schemacreator)
+[1.3.1.20 schema:creator](#13120-schemacreator)
 
-[1.3.1.21 schema:locationCreated (keuzeveld 3)
-[17](#schemalocationcreated-keuzeveld-3)](#schemalocationcreated-keuzeveld-3)
+[1.3.1.21 schema:locationCreated (keuzeveld 3)](#13121-schemalocationcreated-keuzeveld-3)
 
-[1.3.1.22 Schema:associatedMedia
-[17](#schemaassociatedmedia)](#schemaassociatedmedia)
+[1.3.1.22 Schema:associatedMedia](#13122-schemaassociatedmedia)
 
-[1.3.1.23 schema:conditionsOfAccess (verplicht voor Rijksmusea)
-[17](#schemaconditionsofaccess-verplicht-voor-rijksmusea)](#schemaconditionsofaccess-verplicht-voor-rijksmusea)
+[1.3.1.23 schema:conditionsOfAccess (verplicht voor Rijksmusea)](#13123-schemaconditionsofaccess-verplicht-voor-rijksmusea)
 
-[1.3.2 Schema:MediaObject [18](#schemamediaobject)](#schemamediaobject)
+[1.3.2 Schema:MediaObject](#132-schemamediaobject)
 
-[1.3.2.1 schema:contentUrl [18](#schemacontenturl)](#schemacontenturl)
+[1.3.2.1 schema:contentUrl](#1321schemacontenturl)
 
-[1.3.2.2 schema:license (verplicht)
-[18](#schemalicense-verplicht)](#schemalicense-verplicht)
+[1.3.2.2 schema:license (verplicht)](#1322-schemalicense-verplicht)
 
-[1.3.2.3 schema:thumbnailUrl
-[19](#schemathumbnailurl)](#schemathumbnailurl)
+[1.3.2.3 schema:thumbnailUrl](#1323-schemathumbnailurl)
 
-[1.3.2.4 schema:copyrightHolder\*
-[19](#schemacopyrightholder)](#schemacopyrightholder)
+[1.3.2.4 schema:copyrightHolder\*](#1324-schemacopyrightholder)
 
-[1.3.2.5 Schema:encodingFormat\*
-[19](#schemaencodingformat)](#schemaencodingformat)
+[1.3.2.5 Schema:encodingFormat\*](#1325-schemaencodingformat)
 
-[1.3.2.6 schema:copyrightNotice
-[19](#schemacopyrightnotice)](#schemacopyrightnotice)
+[1.3.2.6 schema:copyrightNotice](#1326-schemacopyrightnotice)
 
-[1.3.3 Schema:Person [20](#schemaperson)](#schemaperson)
+[1.3.3 Schema:Person](#133-schemaperson)
 
-[1.3.3.1 schema:name [20](#schemaname)](#schemaname)
+[1.3.3.1 schema:name](#1331-schemaname)
 
-[1.3.3.2 Schema:sameAs [20](#schemasameas)](#schemasameas)
+[1.3.3.2 Schema:sameAs](#1332-schemasameas)
 
-[1.3.3.3 Schema:hasOccupation
-[21](#schemahasoccupation)](#schemahasoccupation)
+[1.3.3.3 Schema:hasOccupation](#1333-schemahasoccupation)
 
-[1.3.3.4 Schema:birthDate [21](#schemabirthdate)](#schemabirthdate)
+[1.3.3.4 Schema:birthDate](#1334-schemabirthdate)
 
-[1.3.3.5 Schema:birthPlace [21](#schemabirthplace)](#schemabirthplace)
+[1.3.3.5 Schema:birthPlace](#1335-schemabirthplace)
 
-[1.3.3.6 Schema:deathDate [21](#schemadeathdate)](#schemadeathdate)
+[1.3.3.6 Schema:deathDate](#1336-schemadeathdate)
 
-[1.3.3.7 Schema:deathplace [22](#schemadeathplace)](#schemadeathplace)
+[1.3.3.7 Schema:deathplace](#1337-schemadeathplace)
 
-[1.3.4 schema:GeoCoordinates
-[22](#schemageocoordinates)](#schemageocoordinates)
+[1.3.4 schema:GeoCoordinates](#134-schemageocoordinates)
 
-[1.3.4.1 schema:latitude [22](#schemalatitude)](#schemalatitude)
+[1.3.4.1 schema:latitude](#1341-schemalatitude)
 
-[1.3.4.2 schema:longitude [22](#schemalongitude)](#schemalongitude)
+[1.3.4.2 schema:longitude](#1342-schemalongitude)
 
-[1.3.5. schema:AdministrativeArea\*
-[22](#schemaadministrativearea)](#schemaadministrativearea)
+[1.3.5. schema:AdministrativeArea\*](#135-schemaadministrativearea)
 
-[1.3.5.1 Schema:name [23](#schemaname-1)](#schemaname-1)
+[1.3.5.1 Schema:name](#1351-schemaname-1)
 
-[1.3.5.2 Schema:sameAs [23](#schemasameas-1)](#schemasameas-1)
+[1.3.5.2 Schema:sameAs](#1352-schemasameas-1)
 
-[1.3.6 schema:PropertyValue
-[23](#schemapropertyvalue)](#schemapropertyvalue)
+[1.3.6 schema:PropertyValue](#136-schemapropertyvalue)
 
-[1.3.6.1 schema:propertyID [23](#schemapropertyid)](#schemapropertyid)
+[1.3.6.1 schema:propertyID](#1361-schemapropertyid)
 
-[1.3.6.2. schema:value [24](#schemavalue)](#schemavalue)
+[1.3.6.2. schema:value](#1362-schemavalue)
 
-[1.3.6.3 schema:description
-[24](#schemadescription)](#schemadescription)
+[1.3.6.3 schema:description](#1363-schemadescription)
 
-[1.3.7. schema:Place [24](#schemaplace)](#schemaplace)
+[1.3.7. schema:Place](#137-schemaplace)
 
-[1.3.7.1 Schema:addressRegion\*
-[24](#schemaaddressregion)](#schemaaddressregion)
+[1.3.7.1 Schema:addressRegion\*](#1371-schemaaddressregion)
 
-[1.3.7.2 Schema:name [24](#schemaname-2)](#schemaname-2)
+[1.3.7.2 Schema:name](#1372-schemaname-2)
 
-[1.3.7.3 Schema:sameAs [25](#schemasameas-2)](#schemasameas-2)
+[1.3.7.3 Schema:sameAs](#1373-schemasameas-2)
 
-[1.3.8 schema:Occupation, schema:DefinedTerm
-[25](#schemaoccupation-schemadefinedterm)](#schemaoccupation-schemadefinedterm)
+[1.3.8 schema:Occupation, schema:DefinedTerm](#138-schemaoccupation-schemadefinedterm)
 
-[1.3.8.1 Schema:name [25](#schemaname-3)](#schemaname-3)
+[1.3.8.1 Schema:name](#1381-schemaname-3)
 
-[1.3.8.2 Schema:sameAs [25](#schemasameas-3)](#schemasameas-3)
+[1.3.8.2 Schema:sameAs](#1382-schemasameas-3)
 
-[1.3.9. schema:DefinedTerm [26](#schemadefinedterm)](#schemadefinedterm)
+[1.3.9. schema:DefinedTerm](#139-schemadefinedterm)
 
-[1.3.9.1 Schema:name [26](#schemaname-4)](#schemaname-4)
+[1.3.9.1 Schema:name](#1391-schemaname-4)
 
-[1.3.9.2 Schema:sameAs [26](#schemasameas-4)](#schemasameas-4)
+[1.3.9.2 Schema:sameAs](#1392-schemasameas-4)
 
-[1.3.10 schema:Product\* [26](#schemaproduct)](#schemaproduct)
+[1.3.10 schema:Product\*](#1310-schemaproduct)
 
-[1.3.10.1 Schema:name [27](#schemaname-5)](#schemaname-5)
+[1.3.10.1 Schema:name](#13101-schemaname-5)
 
-[1.3.10.2 Schema:sameAs [27](#schemasameas-5)](#schemasameas-5)
+[1.3.10.2 Schema:sameAs](#13102-schemasameas-5)
 
-[1.3.11 schema:Text\*, schema:DefinedTerm
-[27](#schematext-schemadefinedterm)](#schematext-schemadefinedterm)
+[1.3.11 schema:Text\*, schema:DefinedTerm](#1311-schematext-schemadefinedterm)
 
-[1.3.11.1 Schema:name [27](#schemaname-6)](#schemaname-6)
+[1.3.11.1 Schema:name](#13111-schemaname-6)
 
-[1.3.11.2 Schema:sameAs [28](#schemasameas-6)](#schemasameas-6)
+[1.3.11.2 Schema:sameAs](#13112-schemasameas-6)
 
 # 1.1 Inleiding
 
