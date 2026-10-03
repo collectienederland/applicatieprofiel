@@ -301,6 +301,7 @@ class creativework["CreativeWork"] {
   name xsd:string 
   alternateName* xsd:string 
   creditText* xsd:string 
+  copyrightNotice* xsd:string
   publisher* xsd:string 
   datePublished* xsd:string 
   citation* xsd:string 
@@ -318,19 +319,19 @@ class additional["Text*, DefinedTerm"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework --> additional: additionalType
+creativework "1..*" --> "0..1" additional: additionalType
 
 class product["Product*"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework --> product: material
+creativework "1..*" --> "0..1" product: material
 
 class defterm["DefinedTerm"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework --> defterm: genre, about
+creativework "1..*" --> "0..1" defterm: genre, about
 class place["Place"] {
   name xsd:string
   sameAs xsd:anyURI
@@ -343,9 +344,9 @@ class adminarea["AdministrativeArea*, DefinedTerm"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework --> place: locationCreated
-place --> geocoor: geo
-place --> adminarea: addressRegion
+creativework "1..*" --> "0..1" place: locationCreated
+place "1..*" --> "0..1" geocoor: geo
+place "1..*" --> "0..*" adminarea: addressRegion
 
 class person["Person"]{
   name xsd:string 
@@ -353,15 +354,15 @@ class person["Person"]{
   deathDate xsd:string  
   birthDate xsd:string 
 }
-creativework --> person: creator
-person --> place: birthPlace
-person --> place: deathPlace
+creativework "1..*" --> "0..1" person: creator
+person "1..*" --> "0..1" place: birthPlace
+person "1..*" --> "0..1" place: deathPlace
 
 class occupation["Occupation, DefinedTerm"]{
   name xsd:string 
   sameAs xsd:anyURI 
 }
-person --> occupation: hasOccupation
+person "0..*" --> "0..1" occupation: hasOccupation
 
 class mediaobject["MediaObject"] {
   contentUrl xsd:anyURI
@@ -370,15 +371,16 @@ class mediaobject["MediaObject"] {
   copyrightNotice xsd:string
   encodingFormat* xsd:string
 }
-creativework --> mediaobject: associatedMedia (encodesCreativeWork)
-mediaobject --> person:copyrightHolder
+creativework "1" --> "0..*" mediaobject: associatedMedia (encodesCreativeWork)
+mediaobject "0..*" --> "0..1" person:copyrightHolder
+creativework "0..*" --> "0..1" person:copyrightHolder
 
 class propval["PropertyValue"] {
   propertyID xsd:string
   value xsd:string
   description xsd:string
 }
-creativework --> propval: identifier
+creativework "1..*" --> "0..*" propval: identifier
 ```
 <!--</pre>-->
 
@@ -410,7 +412,7 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 }
 ```
 
-#### [schema:conditionsOfAccess](https://schema.org/conditionsOfAccess)
+#### [schema:copyrightNotice](https://schema.org/conditionsOfAccess)
 - <b>Scope: </b>Verplicht voor Rijksmusea.
 - <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
 - <b>Waarde:</b> *Waarde moet nog bepaald worden*
@@ -419,6 +421,16 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 - <b>Scope: </b>Verplicht. 
 - <b>Beschrijving:</b> Dataset of collectie waartoe het werk behoort
 - <b>Waarde:</b> zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 1..1
+- <b>Voorbeeld:</b> 
+``` 
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "isPartOf": "https://linkeddata.cultureelerfgoed.nl/rce/datacatalog/id/dataset/db6193aa-84af-3edf-90fd-074a0a11248d"
+}
+```
 
 #### [schema:publisher](https://schema.org/publisher)
 - <b>Scope: </b>Optioneel. >> kan dus weg hier? 
@@ -427,13 +439,16 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 
 #### [schema:url](https://schema.org/url)
 - <b>Scope: </b>Verplicht. 
-- <b>Beschrijving:</b> Link terug naar het record bij de bronhouder
-- <b>Waarde:</b> zie <https://docs.nde.nl/schema-profile/#CreativeWork-URI>
+- <b>Beschrijving:</b> Link terug naar het record bij de bronhouder, zie <https://docs.nde.nl/schema-profile/#CreativeWork-URI>.
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 1..1
 
 #### [schema:license](https://schema.org/license)
 - <b>Scope: </b>Verplicht. 
 - <b>Beschrijving</b>: - *NDE heeft alleen een licentie als verplicht bij MediaObject.*
 - <b>Waarde:</b> *CN-extensie op CreativeWork-niveau*
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 1..1
 
 #### [schema:creditText](https://schema.org/creditText)
 - <b>Scope: Optioneel</b>
@@ -454,199 +469,143 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 - <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij).
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
+- <b>Voorbeeld:</b> 
+```
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "additionalType": {
+    "name": "schilderij",
+    "sameAs": "..."
+  }
+}
+```
 
 #### [schema:creator](https://schema.org/creator)
 - <b>Scope: </b>Verplicht. 
 - <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
-- <b>Waarde:</b> Zie [Person](#person)
+- <b>Datatype:</b> [Person](#person).
+- <b>Kardinaliteit:</b> *..1
+
+<hr/>
 
 ### [Person](https://schema.org/Person)
 <a name="person"></a>
 
 #### [schema:name](https://schema.org/name)
 - <b>Scope: </b>Verplicht. 
-- <b>Beschrijving: Naam van de persoon of organisatie</b> 
-- <b>Waarde: string</b> 
+- <b>Beschrijving:</b>  Naam van de persoon of organisatie
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 1..1
+- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
+
+#### [schema:sameAs](https://schema.org/sameAs)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, verplicht als URI.
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+
+#### [schema:deathDate](https://schema.org/license)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b> date
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+
+#### [schema:birthDate](https://schema.org/license)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b> date
+- <b>Kardinaliteit:</b> 0..1
+
+#### [schema:birthPlace](https://schema.org/birthPlace)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  -- 
+- <b>Datatype:</b> [Place](#Place). 
+- <b>Kardinaliteit:</b> 0..1
+
+#### [schema:occupation](https://schema.org/occupation)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b> 
+- <b>Datatype:</b> [Occupation](#Occupation). 
+- <b>Kardinaliteit:</b> 0..1
+
+<hr/>
 
 ### [MediaObject](https://schema.org/MediaObject)
-<a name="media"></a>
+<a name="MediaObject"></a>
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
 - <b>Scope: </b>Verplicht. 
-- <b>Beschrijving: Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl></b> 
-- <b>Waarde: URI</b> 
+- <b>Beschrijving:</b>  Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl>
+- <b>Datatype:</b>  URI 
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:thumbnailUrl](https://schema.org/thumbnailUrl)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving:</b>  Directe URI naar de thumbnail, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-thumbnailUrl>
+- <b>Datatype:</b>  URI 
+- <b>Kardinaliteit:</b> 1..1
 
 #### [schema:license](https://schema.org/license)
-<b>Scope: </b>Verplicht. 
-<b>Beschrijving: Rechtenstatement van de afbeelding, verplicht als URI.</b> 
-<b>Waarde: URI</b> 
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, verplicht als URI.
+- <b>Datatype:</b>  URI 
+- <b>Kardinaliteit:</b> 1..1
 
-### Person, Place, Occupation 
-
-Gegevens over het ontstaan van een werk worden in het model weergegeven als volgt.
-
-<!--<pre class="mermaid">-->
-```mermaid
----
-  config:
-    theme: forest
-    class:
-      hideEmptyMembersBox: true
----
-classDiagram
-class creativework["CreativeWork"] {
-  dateCreated xsd:string
-  temporal* xsd:string
-}
-class place["Place"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-class geocoor["GeoCoordinates"] {
-  latitude xsd:string
-  longitude xsd:string
-}
-class adminarea["AdministrativeArea*, DefinedTerm"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> place: locationCreated
-place --> geocoor: geo
-place --> adminarea: addressRegion
-
-class person["Person"]{
-  name xsd:string 
-  sameAs xsd:anyURI 
-  deathDate xsd:string 
-  birthDate xsd:string 
-}
-person --> place: birthPlace
-person --> place: deathPlace
-
-creativework --> person: creator
-class occupation["Occupation, DefinedTerm"]{
-  name xsd:string 
-  sameAs xsd:anyURI 
-}
-
-person --> occupation: hasOccupation
+#### [schema:encodingFormat](https://schema.org/encodingFormat)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  
+- <b>Datatype: string</b> 
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
 ```
-<!--</pre>-->
-
-#### [Person](https://schema.org/Person)
-De maker van het werk. In sommige gevallen kan dit een organisatie zijn. 
-#### [Occupation](https://schema.org/Occupation)
-De rol van de maker van het werk, bv. 'schilder'.
-#### [Place](https://schema.org/Place)
-De plek waar het werk gemaakt is.
-#### [GeoCoordinates](https://schema.org/CreativeWork)
-De coördinaten van de plek waar het werk gemaakt is.
-#### [AdministrativeArea](https://schema.org/AdministrativeArea)
-De provincie waarin de plek zich bevindt.
-#### [dateCreated](https://schema.org/dateCreated) and [temporal](https://schema.org/temporal)
-Als de datum van de creatie door middel van een ISO-8601 conformerende waarde beschikbaar is, wordt die opgenomen in het veld dateCreated. Zo niet, kan temporal worden gebruikt.
-
-### [MediaObject](https://schema.org/MediaObject)
-De link naar beschikbare media van een werk word gemaakt door middel van het MediaObject. 
-
-<!--<pre class="mermaid">-->
-```mermaid
----
-  config:
-    theme: forest
-    class:
-      hideEmptyMembersBox: true
----
-classDiagram
-class creativework["CreativeWork"] 
-
-class mediaobject["MediaObject"] {
-  contentUrl xsd:anyURI
-  thumbnailUrl xsd:anyURI
-  license* xsd:string
-  copyrightNotice xsd:string
-  encodingFormat* xsd:string
+{
+  "@context": "https://schema.org",
+  "@type": "MediaObject",
+  "encodingformat": "image/jpeg"
 }
-creativework --> mediaobject: associatedMedia (encodesCreativeWork)
-class cpholder["Person"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-mediaobject --> cpholder:copyrightHolder
 ```
-<!--</pre>-->
 
-#### [license*](https://schema.org/license)
-Rechtenstatement vanuit brondata edm:rights.
-#### [copyrightNotice](https://schema.org/copyrightNotice)
-Rechtenstatement vanuit brondata dc:rights.
-#### [copyrightHolder](https://schema.org/copyrightHolder)
-Als MediaObjecten onder copyright vallen, kunnen rechthebbenden van een MediaObject worden opgenomen worden door middel van de relatie copyrightHolder.
+#### [schema:copyrightHolder](https://schema.org/copyrightHolder)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
+- <b>Datatype:</b>  [Person](#person).
+- <b>Kardinaliteit:</b> 0..1
 
+#### [schema:copyrightNotice](https://schema.org/copyrightNotice)
+- <b>Scope: </b>Optioneel. 
+- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, als tekst beschreven.
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 0..1
 
-### [identifier](https://schema.org/identifier)
-IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn kunnen worden toegevoegd door middel van de PropertyValuye klasse. 
+<hr/>
 
-<!--<pre class="mermaid">-->
-```mermaid
----
-  config:
-    theme: forest
-    class:
-      hideEmptyMembersBox: true
----
-classDiagram
-class creativework["CreativeWork"]
-class propval["PropertyValue"] {
-  propertyID xsd:string
-  value xsd:string
-  description xsd:string
-}
-creativework --> propval: identifier
-```
-<!--</pre>-->
+### [Place](https://schema.org/Place)
+<a name="Place"></a>
 
-### [additionalType](https://schema.org/additionalType), [material](https://schema.org/material), [genre](https://schema.org/genre), [about](https://schema.org/about)
-Beschrijvende gegevens over het werk worden op de volgende manier opgenomen. 
+<hr/>
 
-<!--<pre class="mermaid">-->
-```mermaid
----
-  config:
-    theme: forest
-    class:
-      hideEmptyMembersBox: true
----
-classDiagram
-class creativework["CreativeWork"]
+### [Occupation](https://schema.org/Occupation)
+<a name="Occupation"></a>
 
-class additional["Text*, DefinedTerm"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> additional: additionalType
+<hr/>
 
-class product["Product*"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> product: material
+### [PropertyValue](https://schema.org/PropertyValue)
+<a name="PropertyValue"></a>
 
-class defterm["DefinedTerm"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> defterm: genre, about
-```
-<!--</pre>-->
-#### [material](https://schema.org/material)
-Materiaal dat bij de vervaardiging van het werk gebruikt is.
-#### [additionalType](https://schema.org/additionalType)
-Aanvullende tekstuele beschrijving, of categorisering van het werk. 
-#### [DefinedTerm](https://schema.org/DefinedTerm)
-Aanvullende relevante termen via relaties genre en about.
+<hr/>
 
+### [DefinedTerm](https://schema.org/DefinedTerm)
+<a name="DefinedTerm"></a>
+
+<hr/>
+
+### [Product](https://schema.org/Product)
+<a name="Product"></a>
+
+<hr/>
 <!--
 <script type="module">
 	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
