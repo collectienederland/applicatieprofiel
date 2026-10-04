@@ -399,9 +399,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 
 #### [schema:additionalType](https://schema.org/additionalType)
 <i>Verplicht, tenzij [schema:name](https://schema.org/name) aanwezig is. </i>
-- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij).
-- <b>Datatype:</b> string
-- <b>Kardinaliteit:</b> 0..1
+- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij). Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
+- <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
+- <b>Kardinaliteit:</b> 0..* ???
+
 - <b>Voorbeeld:</b> 
 ```
 {
@@ -409,8 +410,46 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
   "@type": "CreativeWork",
   "additionalType": {
     "@type": "DefinedTerm",
-    "name": "schilderij",
-    "sameAs": "..."
+    "name": "tekening",
+    "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/eb9e1e5b-b319-4519-a4f5-0dd26dbf4524"
+  }
+}
+```
+
+#### [schema:material](https://schema.org/material)
+<i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> materiaal waaruit het object bestaat. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
+- <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
+- <b>Kardinaliteit:</b> 0..* ???
+- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-material)
+- <b>Voorbeeld:</b> 
+```
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "material": {
+    "@type": "DefinedTerm",
+    "name": "metalen",
+    "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/b9fd0887-297b-4bab-bea5-cb288d068816"
+  }
+}
+```
+
+#### [schema:genre](https://schema.org/genre)
+<i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> Onderwerp van het afgebeelde op het object. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
+- <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
+- <b>Kardinaliteit:</b> 0..* ???
+- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-genre)
+- <b>Voorbeeld:</b> 
+```
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "genre": {
+    "@type": "DefinedTerm",
+    "name": "bevrijding",
+    "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/ac43187b-02fa-45ab-b1d6-86a02860db1f"
   }
 }
 ```
@@ -526,7 +565,7 @@ https://muiderslot.adlibhosting.com/details/museum/10000349
 #### [schema:license](https://schema.org/license)
 
 <i>Optioneel</i><br/><br/> 
-- <b>Beschrijving</b>: rechtenstatement van het object zelf (URI). Uitsluitend rechtenstatements van Rightstatements.org.
+- <b>Beschrijving:</b> rechtenstatement van het object zelf (URI). Uitsluitend rechtenstatements van Rightstatements.org.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> http://rightsstatements.org/vocab/InC/1.0/
@@ -534,6 +573,23 @@ https://muiderslot.adlibhosting.com/details/museum/10000349
 #### [schema:description](https://schema.org/description)
 
 <i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> beschrijving van het object.
+- <https://docs.nde.nl/schema-profile/#CreativeWork-description>
+```
+Schilderij van een ridderzaal met een tafel met buffet. Aan
+  beide zijde van de tafel een ridder in harnas.
+```
+
+#### [schema:size](https://schema.org/size)
+
+<i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> afmeting van het object in hoogte x breedte x diepte in
+  cm als een waarde.
+- <b>Datatype:</b> string
+- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-size)
+```
+Voorbeeld: 24,5 × 20,5 x 4 cm
+```
 
 #### [schema:creditText](https://schema.org/creditText)
 
@@ -558,13 +614,13 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 #### [schema:creator](https://schema.org/creator)
 <i>Verplicht</i><br/><br/> 
 - <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
-- <b>Datatype:</b> [Person](#person).
+- <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 1..1
 
 <hr/>
 
 ### [Person](https://schema.org/Person)
-<a name="person"></a>
+<a name="Person"></a>
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> 
