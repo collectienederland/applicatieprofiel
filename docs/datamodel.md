@@ -298,40 +298,42 @@ Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [
 ---
 classDiagram
 class creativework["CreativeWork"] {
-  name xsd:string 
-  alternateName* xsd:string 
-  creditText* xsd:string 
-  copyrightNotice* xsd:string
-  publisher* xsd:string 
-  datePublished* xsd:string 
-  citation* xsd:string 
+  alternateName xsd:string 
+  citation xsd:string 
+  copyrightNotice xsd:string
+  creditText xsd:string 
+  datePublished xsd:string 
   dateCreated xsd:string 
-  temporal* xsd:string 
-  license* xsd:string 
   description xsd:string 
-  size xsd:string 
-  url xsd:anyURI 
   isPartOf xsd:anyURI 
+  license xsd:string 
+  name xsd:string 
+  publisher xsd:string 
   sdDatePublished xsd:date 
+  size xsd:string 
+  temporal xsd:string 
+  url xsd:anyURI 
 }
 
-class additional["Text*, DefinedTerm"] {
+creativework --> "0..*" creativework: hasPart
+
+class additional["DefinedTerm"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework "1..*" --> "0..1" additional: additionalType
+creativework --> "0..1" additional: additionalType
 
-class product["Product*"] {
+class product["Product"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework "1..*" --> "0..1" product: material
+creativework --> "0..1" product: material
 
 class defterm["DefinedTerm"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework "1..*" --> "0..1" defterm: genre, about
+creativework --> "0..1" defterm: genre, about
 class place["Place"] {
   name xsd:string
   sameAs xsd:anyURI
@@ -340,13 +342,13 @@ class geocoor["GeoCoordinates"] {
   latitude xsd:string
   longitude xsd:string
 }
-class adminarea["AdministrativeArea*, DefinedTerm"] {
+class adminarea["AdministrativeArea"] {
   name xsd:string
   sameAs xsd:anyURI
 }
-creativework "1..*" --> "0..1" place: locationCreated
-place "1..*" --> "0..1" geocoor: geo
-place "1..*" --> "0..*" adminarea: addressRegion
+creativework --> "0..1" place: locationCreated
+place --> "0..1" geocoor: geo
+place --> "0..*" adminarea: addressRegion
 
 class person["Person"]{
   name xsd:string 
@@ -354,15 +356,15 @@ class person["Person"]{
   deathDate xsd:string  
   birthDate xsd:string 
 }
-creativework "1..*" --> "0..1" person: creator
-person "1..*" --> "0..1" place: birthPlace
-person "1..*" --> "0..1" place: deathPlace
+creativework --> "0..1" person: creator
+person --> "0..1" place: birthPlace
+person --> "0..1" place: deathPlace
 
-class occupation["Occupation, DefinedTerm"]{
+class occupation["Occupation"]{
   name xsd:string 
   sameAs xsd:anyURI 
 }
-person "0..*" --> "0..1" occupation: hasOccupation
+person --> "0..1" occupation: hasOccupation
 
 class mediaobject["MediaObject"] {
   contentUrl xsd:anyURI
@@ -372,15 +374,16 @@ class mediaobject["MediaObject"] {
   encodingFormat* xsd:string
 }
 creativework "1" --> "0..*" mediaobject: associatedMedia (encodesCreativeWork)
-mediaobject "0..*" --> "0..1" person:copyrightHolder
-creativework "0..*" --> "0..1" person:copyrightHolder
+mediaobject --> "0..1" person:copyrightHolder
+creativework --> "0..1" person:copyrightHolder
 
 class propval["PropertyValue"] {
   propertyID xsd:string
   value xsd:string
   description xsd:string
 }
-creativework "1..*" --> "0..*" propval: identifier
+
+creativework --> "0..*" propval: identifier
 ```
 <!--</pre>-->
 
@@ -388,14 +391,32 @@ creativework "1..*" --> "0..*" propval: identifier
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel.
 
 #### [schema:name](https://schema.org/name)
-- <b>Scope: </b>Verplicht, tenzij [schema:additionalType](https://schema.org/additionalType) aanwezig is. 
+<i>Verplicht, tenzij [schema:additionalType](https://schema.org/additionalType) aanwezig is. </i>
 - <b>Beschrijving:</b> titel van het object
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
 
+#### [schema:additionalType](https://schema.org/additionalType)
+<i>Verplicht, tenzij [schema:name](https://schema.org/name) aanwezig is. </i>
+- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij).
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+```
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "additionalType": {
+    "@type": "DefinedTerm",
+    "name": "schilderij",
+    "sameAs": "..."
+  }
+}
+```
+
 #### [schema:alternateName](https://schema.org/alternateName)
-- <b>Scope: Optioneel</b>
+<i>Optioneel</i><br/><br/>
 - <b>Beschrijving:</b> alternatieve titel van het object
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
@@ -412,14 +433,14 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 }
 ```
 
-#### [schema:copyrightNotice](https://schema.org/conditionsOfAccess)
-- <b>Scope: </b>Verplicht voor Rijksmusea.
+#### [schema:copyrightNotice](https://schema.org/copyrightNotice)
+<i>Verplicht voor Rijksmusea</i>
 - <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
 - <b>Waarde:</b> *Waarde moet nog bepaald worden*
 
-#### [schema:isPartOf](https://schema.org/isPartOf)
-- <b>Scope: </b>Verplicht. 
-- <b>Beschrijving:</b> Dataset of collectie waartoe het werk behoort
+#### [schema:isPartOf](https://schema.org/isPartOf) (Dataset)
+<i>Verplicht</i>
+- <b>Beschrijving:</b> Dataset waartoe het werk behoort
 - <b>Waarde:</b> zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 1..1
@@ -432,29 +453,99 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 }
 ```
 
-#### [schema:publisher](https://schema.org/publisher)
-- <b>Scope: </b>Optioneel. >> kan dus weg hier? 
-- <b>Beschrijving:</b> Wordt door CollectieNederland.nl opgehaald uit het NDE Dataset Register..
-- <b>Waarde:</b> ??
+#### [schema:hasPart](https://schema.org/hasPart) (Deelcollectie)
+<i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> Onderdeel van deelcollectie.
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 0..*
+- <b>Voorbeeld:</b> 
+``` 
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "hasPart": "https://linkeddata.cultureelerfgoed.nl/rce/rijkscollectie-rce/id/creativework/74c80173-b77c-3799-afbd-72a13f31fd58",
+}
+```
+
+#### [schema:publisher](https://schema.org/publisher) 
+<i>Optioneel</i><br/><br/>
+- <b>Beschrijving:</b> uitgever van een boek, tijdschrift of artikel. Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die
+      ook boeken, artikelen of andere objecten hebben in de
+      museumcollectie.
+- <b>Datatype:</b> string
+- <b>Voorbeeld:</b> 
+```
+Uitgeverij Noordzon
+```
+
+
+#### [schema:temporal](https://schema.org/temporal)
+<i>Optioneel</i><br/><br/>
+<i>Toevoeging op het NDE-applicatieprofiel, vanwege collecties diegeen datering hebben, maar uit een bepaalde periode komen zoals archeologische opgravingen.</i>
+- <b>Beschrijving:</b> onzekerheidsaanduiding datering als vrije tekst, bijvoorbeeld:
+  - Ca.
+  - Circa
+  - Ongeveer
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 0..1
+
+#### [schema:datePublished](https://schema.org/datePublished)
+<i>Optioneel</i><br/><br/>
+<i>Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die ook boeken, artikelen of andere objecten hebben in de museumcollectie.</i>
+
+- <b>Beschrijving:</b> datum waarop het object is uitgegeven door de uitgever.
+- <b>Datatype:</b> date, conform ISO-8601
+
+#### [schema:sdDatePublished](https://schema.org/sdDatePublished)
+<i>Verplicht</i><br/><br/>
+- <b>Beschrijving:</b> de datum waarop de metadata is gepubliceerd, zie https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished.
+- <b>Datatype:</b> date, conform ISO-8601
+
+#### [schema:citation](https://schema.org/citation)
+<i>Optioneel</i><br/><br/> 
+<i>Uitbreiding op het NDE-applicatieprofiel voor verwijzingen naar publicaties of boeken die aan een object gerelateerd zijn.
+</i><br/>
+- <b>Beschrijving:</b> referentie naar een publicatie of boek.
+- <b>Datatype:</b> string
+- <b>Voorbeeld:</b> 
+```
+van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near East. OMROL 69, blz. 13
+```
 
 #### [schema:url](https://schema.org/url)
-- <b>Scope: </b>Verplicht. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b> Link terug naar het record bij de bronhouder, zie <https://docs.nde.nl/schema-profile/#CreativeWork-URI>.
 - <b>Datatype:</b> URI
-- <b>Kardinaliteit:</b> 1..1
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b>
+```
+http://hdl.handle.net/10934/RM0001.COLLECT.250239
+https://muiderslot.adlibhosting.com/details/museum/10000349
+```
 
 #### [schema:license](https://schema.org/license)
-- <b>Scope: </b>Verplicht. 
-- <b>Beschrijving</b>: - *NDE heeft alleen een licentie als verplicht bij MediaObject.*
-- <b>Waarde:</b> *CN-extensie op CreativeWork-niveau*
+
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving</b>: rechtenstatement van het object zelf (URI). Uitsluitend rechtenstatements van Rightstatements.org.
 - <b>Datatype:</b> URI
-- <b>Kardinaliteit:</b> 1..1
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> http://rightsstatements.org/vocab/InC/1.0/
+
+#### [schema:description](https://schema.org/description)
+
+<i>Optioneel</i><br/><br/>
 
 #### [schema:creditText](https://schema.org/creditText)
-- <b>Scope: Optioneel</b>
+
+<i>Optioneel</i><br/><br/> 
+<i>Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op: voor het specifieke geval eigendomsgeschiedenis is dit veld juist afgeraden (te weinig gestructureerd) — hier gaat het om een breder, algemeen gebruik.</i><br/><br/> 
+
 - <b>Beschrijving:</b> geassocieerde persoon of organisatie die is gerelateerd  aan het object.
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
+
+Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op: voor het specifieke geval eigendomsgeschiedenis is dit veld juist afgeraden (te weinig gestructureerd) — hier gaat het om een breder, algemeen gebruik.
+
 - <b>Voorbeeld:</b> 
 ``` 
 {
@@ -464,28 +555,11 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 }
 ```
 
-#### [schema:additionalType](https://schema.org/additionalType)
-- <b>Scope: </b>Verplicht, tenzij [schema:name](https://schema.org/name) aanwezig is. 
-- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij).
-- <b>Datatype:</b> string
-- <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> 
-```
-{
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "additionalType": {
-    "name": "schilderij",
-    "sameAs": "..."
-  }
-}
-```
-
 #### [schema:creator](https://schema.org/creator)
-- <b>Scope: </b>Verplicht. 
+<i>Verplicht</i><br/><br/> 
 - <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#person).
-- <b>Kardinaliteit:</b> *..1
+- <b>Kardinaliteit:</b> 1..1
 
 <hr/>
 
@@ -493,40 +567,38 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 <a name="person"></a>
 
 #### [schema:name](https://schema.org/name)
-- <b>Scope: </b>Verplicht. 
+<i>Verplicht</i><br/><br/> 
 - <b>Beschrijving:</b>  Naam van de persoon of organisatie
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 1..1
 - <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
 
 #### [schema:sameAs](https://schema.org/sameAs)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, verplicht als URI.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> 
 
 #### [schema:deathDate](https://schema.org/license)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype:</b> date
 - <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> 
 
 #### [schema:birthDate](https://schema.org/license)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype:</b> date
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:birthPlace](https://schema.org/birthPlace)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  -- 
 - <b>Datatype:</b> [Place](#Place). 
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:occupation](https://schema.org/occupation)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b> 
 - <b>Datatype:</b> [Occupation](#Occupation). 
 - <b>Kardinaliteit:</b> 0..1
@@ -537,25 +609,25 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 <a name="MediaObject"></a>
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
-- <b>Scope: </b>Verplicht. 
+<i>Verplicht</i><br/><br/> 
 - <b>Beschrijving:</b>  Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:thumbnailUrl](https://schema.org/thumbnailUrl)
-- <b>Scope: </b>Verplicht. 
+<i>Verplicht</i><br/><br/> 
 - <b>Beschrijving:</b>  Directe URI naar de thumbnail, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-thumbnailUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:license](https://schema.org/license)
-- <b>Scope: </b>Verplicht. 
+<i>Verplicht</i><br/><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, verplicht als URI.
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:encodingFormat](https://schema.org/encodingFormat)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype: string</b> 
 - <b>Kardinaliteit:</b> 0..1
@@ -569,13 +641,13 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 ```
 
 #### [schema:copyrightHolder](https://schema.org/copyrightHolder)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
 - <b>Datatype:</b>  [Person](#person).
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice)
-- <b>Scope: </b>Optioneel. 
+<i>Optioneel</i><br/><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, als tekst beschreven.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
@@ -587,24 +659,107 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 
 <hr/>
 
+### [AdministrativeArea](https://schema.org/AdministrativeArea)
+<a name="AdministrativeArea"></a>
+
+<hr/>
+
+### [Place](https://schema.org/Place)
+<a name="Place"></a>
+
+<hr/>
+
 ### [Occupation](https://schema.org/Occupation)
 <a name="Occupation"></a>
+
+
+#### [schema:name](https://schema.org/name)
+<i>Verplicht</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:sameAs](https://schema.org/sameAs)
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  URI
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+
+```
+{
+  "@context": "https://schema.org",
+  "@type": ["Occupation"],
+  "name": "Fotograaf",
+  "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/fa108e11-e409-4a69-938e-1c1e66927c13",
+}
+```
 
 <hr/>
 
 ### [PropertyValue](https://schema.org/PropertyValue)
 <a name="PropertyValue"></a>
 
+#### [schema:propertyID](https://schema.org/propertyID)
+<i>Verplicht</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:value](https://schema.org/value)
+<i>Verplicht</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:description](https://schema.org/description)
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
 <hr/>
 
 ### [DefinedTerm](https://schema.org/DefinedTerm)
 <a name="DefinedTerm"></a>
 
+#### [schema:name](https://schema.org/name)
+<i>Verplicht</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:sameAs](https://schema.org/sameAs)
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  URI
+- <b>Kardinaliteit:</b> 0..1
 <hr/>
 
 ### [Product](https://schema.org/Product)
 <a name="Product"></a>
 
+#### [schema:name](https://schema.org/name)
+<i>Verplicht</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  string
+- <b>Kardinaliteit:</b> 1..1
+
+#### [schema:sameAs](https://schema.org/sameAs)
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving:</b>  
+- <b>Datatype:</b>  URI
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+
+```
+{
+  "@context": "https://schema.org",
+  "@type": ["Product"],
+  "name": "Fotograaf",
+  "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/152a6b74-0549-4e53-aec0-f8209db88b86",
+}
+```
 <hr/>
 <!--
 <script type="module">
