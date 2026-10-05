@@ -2,11 +2,3 @@ theme: jekyll-theme-minimal
 title: Vernieuwing CollectieNederland.nl
 description: Het applicatiesprofiel van het vernieuwde platform van CollectieNederland.nl
 
-defaults:
-  # _docs
-  - scope:
-      path: ""
-      type: docs
-    values:
-      sidebar:
-        nav: "docs"
