@@ -333,12 +333,16 @@ class creativework["CreativeWork"] {
 
 creativework --> "0..*" creativework: hasPart
 
-class additional["DefinedTerm"] {
+class additional["DefinedTerm, URL"] {
   name xsd:string
   sameAs xsd:anyURI
 }
 creativework --> "0..1" additional: additionalType
 
+class defterm["DefinedTerm"] {
+  name xsd:string
+  sameAs xsd:anyURI
+}
 creativework --> "0..1" defterm: genre, about, material
 class place["Place"] {
   name xsd:string
@@ -424,7 +428,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:material](https://schema.org/material)
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> materiaal waaruit het object bestaat. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
 - <b>Kardinaliteit:</b> 0..* ???
@@ -443,7 +447,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:genre](https://schema.org/genre)
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> Onderwerp van het afgebeelde op het object. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
 - <b>Kardinaliteit:</b> 0..* ???
@@ -462,7 +466,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:alternateName](https://schema.org/alternateName)
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> alternatieve titel van het object
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
@@ -480,12 +484,12 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 ```
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice)
-<i>Verplicht voor Rijksmusea</i>
+<i>Verplicht voor Rijksmusea</i><br/>
 - <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
 - <b>Waarde:</b> *Waarde moet nog bepaald worden*
 
 #### [schema:isPartOf](https://schema.org/isPartOf) (Dataset)
-<i>Verplicht</i>
+<i>Verplicht</i><br/>
 - <b>Beschrijving:</b> Dataset waartoe het werk behoort
 - <b>Waarde:</b> zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
 - <b>Datatype:</b> URI
@@ -500,7 +504,7 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 ```
 
 #### [schema:hasPart](https://schema.org/hasPart) (Deelcollectie)
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> Onderdeel van deelcollectie.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..*
@@ -514,7 +518,7 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 ```
 
 #### [schema:publisher](https://schema.org/publisher) 
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> uitgever van een boek, tijdschrift of artikel. Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die
       ook boeken, artikelen of andere objecten hebben in de
       museumcollectie.
@@ -526,7 +530,7 @@ Uitgeverij Noordzon
 
 
 #### [schema:temporal](https://schema.org/temporal)
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 <i>Toevoeging op het NDE-applicatieprofiel, vanwege collecties diegeen datering hebben, maar uit een bepaalde periode komen zoals archeologische opgravingen.</i>
 - <b>Beschrijving:</b> onzekerheidsaanduiding datering als vrije tekst, bijvoorbeeld:
   - Ca.
@@ -548,21 +552,19 @@ Uitgeverij Noordzon
 ```
 
 #### [schema:datePublished](https://schema.org/datePublished)
-<i>Optioneel</i><br/><br/>
-<i>Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die ook boeken, artikelen of andere objecten hebben in de museumcollectie.</i>
-
+<i>Optioneel</i><br/>
+<br/><i>Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die ook boeken, artikelen of andere objecten hebben in de museumcollectie.</i>
 - <b>Beschrijving:</b> datum waarop het object is uitgegeven door de uitgever.
 - <b>Datatype:</b> date, conform ISO-8601
 
 #### [schema:sdDatePublished](https://schema.org/sdDatePublished)
-<i>Verplicht</i><br/><br/>
+<i>Verplicht</i><br/>
 - <b>Beschrijving:</b> de datum waarop de metadata is gepubliceerd, zie https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished.
 - <b>Datatype:</b> date, conform ISO-8601
 
 #### [schema:citation](https://schema.org/citation)
-<i>Optioneel</i><br/><br/> 
-<i>Uitbreiding op het NDE-applicatieprofiel voor verwijzingen naar publicaties of boeken die aan een object gerelateerd zijn.
-</i><br/>
+<i>Optioneel</i><br/> 
+<br/><i>Uitbreiding op het NDE-applicatieprofiel voor verwijzingen naar publicaties of boeken die aan een object gerelateerd zijn.</i><br/>
 - <b>Beschrijving:</b> referentie naar een publicatie of boek.
 - <b>Datatype:</b> string
 - <b>Voorbeeld:</b> 
@@ -571,7 +573,7 @@ van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near
 ```
 
 #### [schema:url](https://schema.org/url)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Link terug naar het record bij de bronhouder, zie <https://docs.nde.nl/schema-profile/#CreativeWork-URI>.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
@@ -582,38 +584,43 @@ https://muiderslot.adlibhosting.com/details/museum/10000349
 ```
 
 #### [schema:license](https://schema.org/license)
-
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> rechtenstatement van het object zelf (URI). Uitsluitend rechtenstatements van Rightstatements.org.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> http://rightsstatements.org/vocab/InC/1.0/
 
 #### [schema:description](https://schema.org/description)
-
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> beschrijving van het object.
 - <https://docs.nde.nl/schema-profile/#CreativeWork-description>
+
 ```
-Schilderij van een ridderzaal met een tafel met buffet. Aan
-  beide zijde van de tafel een ridder in harnas.
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "description": "Schilderij van een ridderzaal met een tafel met buffet. Aan beide zijde van de tafel een ridder in harnas."@nl,
+}
 ```
 
 #### [schema:size](https://schema.org/size)
-
-<i>Optioneel</i><br/><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> afmeting van het object in hoogte x breedte x diepte in
   cm als een waarde.
 - <b>Datatype:</b> string
 - [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-size)
+
 ```
-Voorbeeld: 24,5 × 20,5 x 4 cm
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "size": "24,5 × 20,5 x 4 cm"@nl,
+}
 ```
 
 #### [schema:creditText](https://schema.org/creditText)
-
-<i>Optioneel</i><br/><br/> 
-<i>Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op: voor het specifieke geval eigendomsgeschiedenis is dit veld juist afgeraden (te weinig gestructureerd) — hier gaat het om een breder, algemeen gebruik.</i><br/><br/> 
+<i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op: voor het specifieke geval eigendomsgeschiedenis is dit veld juist afgeraden (te weinig gestructureerd) — hier gaat het om een breder, algemeen gebruik.</i><br/><br/> 
 
 - <b>Beschrijving:</b> geassocieerde persoon of organisatie die is gerelateerd  aan het object.
 - <b>Datatype:</b> string
@@ -635,7 +642,6 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 1..1
-
 <hr/>
 
 ### [Person](https://schema.org/Person)
@@ -650,42 +656,42 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
 
 #### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  Relatie naar een thesaurusterm. Aanbevolen thesauri: RKD artist, CHT, AAT, Geonames.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie]()
+- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-sameAs)
 
 #### [schema:deathDate](https://schema.org/deathDate)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype:</b> date
 - <b>Kardinaliteit:</b> 0..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#Person-deathDate)
 
 #### [schema:birthDate](https://schema.org/birthDate)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Geboortedatum van de vervaardiger 
 - <b>Datatype:</b> date, conform ISO-8601
 - <b>Kardinaliteit:</b> 0..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#Person-birthDate)
 
 #### [schema:birthPlace](https://schema.org/birthPlace)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Geboorteplaats van de vervaardiger.
 - <b>Datatype:</b> [Place](#Place). 
 - <b>Kardinaliteit:</b> 0..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#Person-birthPlace)
 
 #### [schema:deathPlace](https://schema.org/deathPlace)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Sterfplaats van de vervaadiger. 
 - <b>Datatype:</b> [Place](#Place). 
 - <b>Kardinaliteit:</b> 0..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#Person-deathPlace)
 
 #### [schema:hasOccupation](https://schema.org/hasOccupation)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Rol van de vervaardiger. Aanbevolen thesauri: CHT of AAT
 - <b>Datatype:</b> [Occupation](#Occupation). 
 - <b>Kardinaliteit:</b> 0..1
@@ -720,7 +726,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:encodingFormat](https://schema.org/encodingFormat)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype: string</b> 
 - <b>Kardinaliteit:</b> 0..1
@@ -734,13 +740,13 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 
 #### [schema:copyrightHolder](https://schema.org/copyrightHolder)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
 - <b>Datatype:</b>  [Person](#person).
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, als tekst beschreven.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
@@ -757,14 +763,14 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - [Meer informatie](https://docs.nde.nl/schema-profile/#Place-name)
 
 #### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
 
 #### [schema:addressRegion](https://schema.org/addressRegion)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Provincie waar het object zich bevindt.
 - <b>Datatype:</b>  [<a href="https://schema.org/AdministrativeArea" rel="nofollow">AdministrativeArea</a>](https://schema.org/AdministrativeArea)
 - <b>Kardinaliteit:</b> 0..*
@@ -808,7 +814,7 @@ Voorbeeld: Zuid-Holland
 ```
 
 #### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
@@ -827,7 +833,7 @@ De rol van de vervaardiger van het object, bv. ‘schilder’.
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: AAT, CHT.
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
@@ -862,7 +868,7 @@ IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context be
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:description](https://schema.org/description)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -880,7 +886,7 @@ Aanvullende relevante termen via relaties genre en about. [Meer informatie](http
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. 
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
