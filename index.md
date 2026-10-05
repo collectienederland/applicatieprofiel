@@ -302,8 +302,8 @@ Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende the
 
 Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
-<!--<pre class="mermaid">-->
-```mermaid
+<!--```mermaid-->
+<pre class="mermaid">
 ---
   config:
     theme: forest
@@ -394,8 +394,8 @@ class propval["PropertyValue"] {
 }
 
 creativework --> "0..*" propval: identifier
-```
-<!--</pre>-->
+</pre>
+<!--```-->
 
 ### [CreativeWork](https://schema.org/CreativeWork)
 <a name="CreativeWork"></a>
@@ -900,12 +900,10 @@ Aanvullende relevante termen via relaties genre en about. [Meer informatie](http
 ```
 <hr/>
 
-<!--
 <script type="module">
-	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-	mermaid.initialize({
-		startOnLoad: true,
-		theme: 'dark'
-	});
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark'
+  });
 </script>
--->
