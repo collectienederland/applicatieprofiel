@@ -16,16 +16,15 @@ De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.
     * [Afwijkingen ten opzichte van het NDE applicatieprofiel](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
     * [Thesauri-gebruik](#thesauri-gebruik)
   * [CollectieNederland.nl Applicatieprofiel](#collectienederlandnl-applicatieprofiel-1)
-    * [<a href="https://schema.org/CreativeWork" rel="nofollow">CreativeWork</a>](https://schema.org/CreativeWork)
-    * [<a href="https://schema.org/Person" rel="nofollow">Person</a>](https://schema.org/Person)
-    * [<a href="https://schema.org/MediaObject" rel="nofollow">MediaObject</a>](https://schema.org/MediaObject)
-    * [<a href="https://schema.org/Place" rel="nofollow">Place</a>](https://schema.org/Place)
-    * [<a href="https://schema.org/AdministrativeArea" rel="nofollow">AdministrativeArea</a>](https://schema.org/AdministrativeArea)
-    * [<a href="https://schema.org/GeoCoordinates" rel="nofollow">GeoCoordinates</a>](https://schema.org/GeoCoordinates)
-    * [<a href="https://schema.org/Occupation" rel="nofollow">Occupation</a>](https://schema.org/Occupation)
-    * [<a href="https://schema.org/PropertyValue" rel="nofollow">PropertyValue</a>](https://schema.org/PropertyValue)
-    * [<a href="https://schema.org/DefinedTerm" rel="nofollow">DefinedTerm</a>](https://schema.org/DefinedTerm)
-    * [<a href="https://schema.org/Product" rel="nofollow">Product</a>](https://schema.org/Product)
+    * [CreativeWork](#creativework)
+    * [Person](#person)
+    * [MediaObject](#mediaobject)
+    * [Place](#place)
+    * [AdministrativeArea](#administrativearea)
+    * [GeoCoordinates](#geocoordinates)
+    * [Occupation](#occupation)
+    * [PropertyValue](#propertyvalue)
+    * [DefinedTerm](#definedterm)
 
 ## Definities
 
@@ -340,17 +339,7 @@ class additional["DefinedTerm"] {
 }
 creativework --> "0..1" additional: additionalType
 
-class product["Product"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> "0..1" product: material
-
-class defterm["DefinedTerm"] {
-  name xsd:string
-  sameAs xsd:anyURI
-}
-creativework --> "0..1" defterm: genre, about
+creativework --> "0..1" defterm: genre, about, material
 class place["Place"] {
   name xsd:string
   sameAs xsd:anyURI
@@ -390,7 +379,7 @@ class mediaobject["MediaObject"] {
   copyrightNotice xsd:string
   encodingFormat* xsd:string
 }
-creativework "1" --> "0..*" mediaobject: associatedMedia (encodesCreativeWork)
+creativework --> "0..*" mediaobject: associatedMedia (encodesCreativeWork)
 mediaobject --> "0..1" person:copyrightHolder
 creativework --> "0..1" person:copyrightHolder
 
@@ -405,6 +394,7 @@ creativework --> "0..*" propval: identifier
 <!--</pre>-->
 
 ### [CreativeWork](https://schema.org/CreativeWork)
+<a name="CreativeWork"></a>
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel.
 
 #### [schema:name](https://schema.org/name)
@@ -544,6 +534,18 @@ Uitgeverij Noordzon
   - Ongeveer
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> 
+```
+{
+  "@context": "https://schema.org",
+  "@id": "https://www.wikidata.org/wiki/Q185372",
+  "@type": "CreativeWork",
+  "temporal": {
+    "@language": "en",
+    "@value": "circa 1665"
+  }
+}
+```
 
 #### [schema:datePublished](https://schema.org/datePublished)
 <i>Optioneel</i><br/><br/>
@@ -742,7 +744,6 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, als tekst beschreven.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
-
 <hr/>
 
 ### [Place](https://schema.org/Place)
@@ -768,7 +769,6 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Datatype:</b>  [<a href="https://schema.org/AdministrativeArea" rel="nofollow">AdministrativeArea</a>](https://schema.org/AdministrativeArea)
 - <b>Kardinaliteit:</b> 0..*
 - [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
-
 <hr/>
 
 ### [GeoCoordinates](https://schema.org/GeoCoordinates)
@@ -786,11 +786,10 @@ zijn verplicht als schema:GeoCoordinates aanwezig is.
 
 #### [schema:longitude](https://schema.org/longitude)
 <i>Verplicht</i><br/><br/> 
-- <b>Beschrijving:<b/> Lengtegraad van de vindplaats of vervaardiging.
+- <b>Beschrijving:</b> Lengtegraad van de vindplaats of vervaardiging.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-longitude)
-
 <hr/>
 
 ### [AdministrativeArea](https://schema.org/AdministrativeArea)
@@ -814,7 +813,6 @@ Voorbeeld: Zuid-Holland
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
-
 <hr/>
 
 ### [Occupation](https://schema.org/Occupation)
@@ -868,7 +866,6 @@ IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context be
 - <b>Beschrijving:</b>  
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
-
 <hr/>
 
 ### [DefinedTerm](https://schema.org/DefinedTerm)
@@ -887,35 +884,17 @@ Aanvullende relevante termen via relaties genre en about. [Meer informatie](http
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. 
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
-<hr/>
-
-### [Product](https://schema.org/Product)
-<a name="Product"></a>
-
-Beschrijft het materiaal dat bij de vervaardiging van het object gebruikt is. [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-material)
-
-#### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/><br/> 
-- <b>Beschrijving:</b> Naam van het materiaal.
-- <b>Datatype:</b>  string
-- <b>Kardinaliteit:</b> 1..1
-
-#### [schema:sameAs](https://schema.org/sameAs)
-<i>Optioneel</i><br/><br/> 
-- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: CHT, AAT.
-- <b>Datatype:</b>  URI
-- <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b>
 
 ```
 {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": ["DefinedTerm", "URL"]
   "name": "Aquarelverf",
   "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/152a6b74-0549-4e53-aec0-f8209db88b86",
 }
 ```
 <hr/>
+
 <!--
 <script type="module">
 	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
