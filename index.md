@@ -13,12 +13,9 @@ Hierbinnen geeft dit document ook de specifieke datatypes aan (bijv. URI
 of Date) of de thesauri die toegestaan zijn.
 
 - 0..\* de waarde mag nul, één of meerdere keren voorkomen
-
 - 1..\* de waarde moet minimaal 1 keer voorkomen en mag meerdere malen
   voorkomen
-
 - 0..1 de waarde mag 0 of 1 keer voorkomen
-
 - 1..1 de waarde moet één keer voorkomen
 
 **Classes**: Een type entiteit in schema.org (bijv. Place of
@@ -26,7 +23,7 @@ CreativeWork). Deze worden gebruikt om te bepalen welke entiteiten
 toegestaan zijn in het applicatieprofiel.
 
 **Properties**: de kenmerken die binnen een Class vallen (bijv.
-schema:name en schema:description).). Deze worden gebruikt om te bepalen
+schema:name en schema:description). Deze worden gebruikt om te bepalen
 welke entiteiten toegestaan zijn in het applicatieprofiel.
 
 **Verplichtingsniveau:**
@@ -276,9 +273,9 @@ schema:additionalType, zie sectie 1.2.2.</td>
 
 ### Thesauri-gebruik
 
-Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende thesauri aangenomen, afhankelijk van metadata veld: Art & Architecture Thesaurus (AAT), Cultuurhistorische Thesaurus (CHT), GeoNames en RKDartists. Al deze thesauri zijn te raadplegen via het [Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/nl). Bekijk hier een omschrijving van thesaurustermen in het NDE-applicatieprofiel: [<u>https://docs.nde.nl/schema-profile/#reference-terms.</u>](https://docs.nde.nl/schema-profile/#reference-terms.)
+Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende thesauri aangenomen, afhankelijk van metadata veld: Art & Architecture Thesaurus (AAT), Cultuurhistorische Thesaurus (CHT), GeoNames en RKDartists. Al deze thesauri zijn te raadplegen via het [Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/nl). Bekijk hier een omschrijving van thesaurustermen in het NDE-applicatieprofiel: [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/#reference-terms).
 
-## Applicatieprofiel
+## Datamodel
 
 Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
@@ -377,7 +374,7 @@ creativework --> "0..*" propval: identifier
 </pre>
 <!--```-->
 
-### CreativeWork
+### [CreativeWork](http://schema.org/CreativeWork)
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel.
 
 #### [schema:name](https://schema.org/name)
