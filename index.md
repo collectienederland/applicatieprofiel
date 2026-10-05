@@ -53,7 +53,7 @@ Bij het aanleveren van collectiedata aan CollectieNederland.nl wordt gekeken of 
 NDE-applicatieprofiel. Bij overlap tussen de twee profielen verwijst dit
 document door naar het NDE-applicatieprofiel.
 
-### Overzichtstabel minimale en sterk aanbevolen velden
+#### Overzichtstabel minimale en sterk aanbevolen velden
 
 In de onderstaande tabel staat een overzicht van de minimale (ofwel
 verplichte) en sterk aanbevolen velden voor publicatie van een dataset
@@ -88,7 +88,7 @@ leveren dat iets beschrijft van en/of over het object (CreativeWork).
 
 In de onderstaande tabel staat een overzicht van de velden die worden aanbevolen of optioneel zijn om aan te leveren. In sectie 1.3 worden de velden toegelicht. In sommige gevallen is het zo dat als een optioneel veld wordt aangeleverd, er een verplicht veld bijkomt – dat aan het optionele veld verbonden is. Mocht dit zo zijn dan staat dit per veld aangegeven in de kolom optioneel/aanbevolen.
 
-### Overzichtstabel aanbevolen en optionele velden
+#### Overzichtstabel aanbevolen en optionele velden
 
 | **Entiteit** | **Veld** | **Inhoud van het veld** | **Verplicht** | **Type** | **NDE-profiel** |
 |----|----|----|----|----|----|
@@ -278,7 +278,7 @@ schema:additionalType, zie sectie 1.2.2.</td>
 
 Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende thesauri aangenomen, afhankelijk van metadata veld: Art & Architecture Thesaurus (AAT), Cultuurhistorische Thesaurus (CHT), GeoNames en RKDartists. Al deze thesauri zijn te raadplegen via het [Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/nl). Bekijk hier een omschrijving van thesaurustermen in het NDE-applicatieprofiel: [<u>https://docs.nde.nl/schema-profile/#reference-terms.</u>](https://docs.nde.nl/schema-profile/#reference-terms.)
 
-## CollectieNederland.nl Applicatieprofiel
+## Applicatieprofiel
 
 Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
