@@ -6,6 +6,26 @@ Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van h
 
 De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder 1.2. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder sectie 1.5.
 
+## Inhoudsopgave
+  * [Definities](#definities)
+  * [Velden voor CollectieNederland.nl](#velden-voor-collectienederlandnl)
+    * [Minimale en sterk aanbevolen  velden](#minimale-en-sterk-aanbevolen--velden)
+    * [Overzichtstabel minimale en sterk aanbevolen velden](#overzichtstabel-minimale-en-sterk-aanbevolen-velden)
+    * [Aanbevolen en optionele velden](#aanbevolen-en-optionele-velden)
+    * [Overzichtstabel aanbevolen en optionele velden](#overzichtstabel-aanbevolen-en-optionele-velden)
+    * [Afwijkingen ten opzichte van het NDE applicatieprofiel](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
+    * [Thesauri-gebruik](#thesauri-gebruik)
+  * [CollectieNederland.nl Applicatieprofiel](#collectienederlandnl-applicatieprofiel-1)
+    * [CreativeWork](#creativework)
+    * [Person](#person)
+    * [MediaObject](#mediaobject)
+    * [Place](#place)
+    * [AdministrativeArea](#administrativearea)
+    * [GeoCoordinates](#geocoordinates)
+    * [Occupation](#occupation)
+    * [PropertyValue](#propertyvalue)
+    * [DefinedTerm](#definedterm)
+
 ## Definities
 
 **Kardinaliteit**: hoe vaak een waarde mag voorkomen in een veld.
