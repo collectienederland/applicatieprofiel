@@ -1,3 +1,5 @@
 theme: jekyll-theme-minimal
 title: Vernieuwing CollectieNederland.nl
 description: Het applicatiesprofiel van het vernieuwde platform van CollectieNederland.nl
+
+{% include toc.html html=content %}

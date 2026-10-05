@@ -1,124 +1,74 @@
 # Aanlevervoorwaarden voor CollectieNederland.nl
 
-## 1.1 Inleiding
+## Inleiding
 
-Op deze pagina worden de data-aanlevervoorwaarden beschreven voor
-CollectieNederland.nl. Deze omschrijving is gebaseerd op het [nieuwe
-datamodel voor
-Collectienederland.nl](https://github.com/collectienederland/schema-profile).
-Dit model is gebaseerd op het [Schema.org Application Profile for
-NDE](https://docs.nde.nl/schema-profile/) en volgt dit
-applicatieprofiel. Zodoende zijn de data-aanlevervoorwaarden ook in lijn
-met het NDE applicatieprofiel. Maar betreft het een domein
-specificering.
+Op deze pagina worden de data-aanlevervoorwaarden beschreven voor CollectieNederland.nl. Deze omschrijving is gebaseerd op het [nieuwe datamodel voor Collectienederland.nl](https://github.com/collectienederland/schema-profile). Dit model is gebaseerd op het [Schema.org Application Profile for NDE](https://docs.nde.nl/schema-profile/) en volgt dit applicatieprofiel. Zodoende zijn de data-aanlevervoorwaarden ook in lijn met het NDE applicatieprofiel. Maar betreft het een domein specificering.
 
-Let wel, op enkele punten wijken de aanlevervoorwaarden voor
-CollectieNederland.nl af van het NDE Application Profile. Het gaat hier
-altijd om versoepelingen en aanvullingen ten op zichten van het NDE
-Applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te
-vinden onder kopje 1.4.
+Let wel, op enkele punten wijken de aanlevervoorwaarden voor CollectieNederland.nl af van het NDE Application Profile. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichten van het NDE Applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder kopje 1.4.  Afwijkingingen van het NDE applicatieprofiel zijn gemarkeerd met een asterisk (*).
 
-De velden die minimaal nodig zijn om data aan te leveren aan
-CollectieNederland.nl staan genoteerd onder kopje 1.2.
+De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder kopje 1.2. 
 
-## 1.2 Minimale velden voor CollectieNederland.nl
 
-Bij het aanleveren van collectiedata aan CollectieNederland.nl wordt
-gekeken naar of de volgende minimale velden aanwezig zijn in de data en
-of de inhoud van deze velden in lijn is met het Schema.org Application
-Profile for NDE en het aanvullende Collectie Nederland: Schema Profile.
-Als er voor een veld een afwijking of versoepeling geldt, dan is deze
-leidend ten opzichte van het NDE Application Profile. Bij overlap tussen
-de twee profielen verwijst deze pagina door naar het NDE Application
-Profile.
+## Minimale velden voor CollectieNederland.nl
 
-- **schema:additionalType**
+Bij het aanleveren van collectiedata aan CollectieNederland.nl wordt gekeken naar of de volgende minimale velden aanwezig zijn in de data en of de inhoud van deze velden in lijn is met het Schema.org Application Profile for NDE en het aanvullende Collectie Nederland: Schema Profile. Als er voor een veld een afwijking of versoepeling geldt, dan is dezeleidend ten opzichte van het NDE Application Profile. Bij overlap tussen de twee profielen verwijst deze pagina door naar het NDE Application Profile.
 
-  - Specifiek type van het werk (bijv. schilderij)
+### [CreativeWork](https://schema.org/CreativeWork)
+#### [schema:additionalType](https://schema.org/additionalType)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij).
+- <b>Waarde:</b> zie <https://docs.nde.nl/schema-profile/#subclasses>
 
-  - <https://docs.nde.nl/schema-profile/#subclasses>
+#### [schema:conditionsOfAccess](https://schema.org/conditionsOfAccess)
+- <b>Scope: </b>Verplicht voor Rijksmusea.
+- <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
+- <b>Waarde:</b> *Waarde moet nog bepaald worden*
 
-- **schema:conditionsOfAccess**:
+#### [schema:isPartOf](https://schema.org/isPartOf)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving:</b> Dataset of collectie waartoe het werk behoort
+- <b>Waarde:</b> zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
 
-  - alleen benodigd voor Rijksmusea.
+#### [schema:publisher](https://schema.org/publisher)
+- <b>Scope: </b>Optioneel. >> kan dus weg hier? 
+- <b>Beschrijving:</b> Wordt door CollectieNederland.nl opgehaald uit het NDE Dataset Register..
+- <b>Waarde:</b> ??
 
-  - Actuele juridische status (Rijksmusea, Erfgoedwet)
+#### [schema:url](https://schema.org/url)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving:</b> Link terug naar het record bij de bronhouder
+- <b>Waarde:</b> zie <https://docs.nde.nl/schema-profile/#CreativeWork-URI>
 
-  - *Waarde moet nog bepaald worden*
+#### [schema:license](https://schema.org/license)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving</b>: - *NDE heeft alleen een licentie als verplicht bij MediaObject.*
+- <b>Waarde:</b> *CN-extensie op CreativeWork-niveau*
 
-- **schema:isPartOf**:
+#### [schema:creator](https://schema.org/creator)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
+- <b>Waarde:</b> Zie [Person](#person)
 
-  - Dataset of collectie waartoe het werk behoort
+### [Person](https://schema.org/Person)
+<a name="person"></a>
 
-  - <https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf>
+#### [schema:name](https://schema.org/name)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving: Naam van de persoon of organisatie</b> 
+- <b>Waarde: string</b> 
 
-- **schema:publisher**
+### [MediaObject](https://schema.org/MediaObject)
+<a name="media"></a>
 
-  - Naam van de instelling / dataprovider
+#### [schema:contentUrl](https://schema.org/contentUrl)
+- <b>Scope: </b>Verplicht. 
+- <b>Beschrijving: Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl></b> 
+- <b>Waarde: URI</b> 
 
-  - Wordt door CollectieNederland.nl opgehaald uit het NDE Dataset
-    Register.
-
-<!-- -->
-
-- **schema:TemporalCoverage**
-
-  - Datering — tekst, jaar of periode-URI
-
-  - Minstens één datering verplicht. Formaat: string, integer of URI
-
-  - <https://docs.nde.nl/schema-profile/#CreativeWork-temporalCoverage>
-
-<!-- -->
-
-- **schema:Creator**
-
-  - Maker van het werk
-
-  - <https://docs.nde.nl/schema-profile/#CreativeWork-creator>
-
-- **schema:url**:
-
-  - Link terug naar het record bij de bronhouder
-
-  - <https://docs.nde.nl/schema-profile/#CreativeWork-URI>
-
-- **schema:licence**
-
-  - Rechtenstatement van het werk zelf (URI)
-
-  - [https://docs.nde.nl/schema-profile/#MediaObject-license](https://docs.nde.nl/schema-profile/).
-
-  - *NDE heeft alleen een licentie als verplicht bij MediaObject.*
-
-  - *CN-extensie op CreativeWork-niveau*
-
-> Als er een afbeelding (**schema:MediaObject**) aanwezig is, zijn de
-> volgende velden verplicht:
-
-- **schema:contentUrl**
-
-  - Directe URI naar het mediabestand, verplicht als geldige URI.
-
-  - <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl>
-
-- **schema:license**
-
-  - Rechtenstatement van de afbeelding, verplicht als URI.
-
-  - <https://docs.nde.nl/schema-profile/#MediaObject-license>
-
-> Als er een persoon of organisatie (**schema:Person** en
-> **schema:Organisation**) aanwezig is, zijn de volgende velden
-> verplicht:
-
-- **schema:name**
-
-  - Naam van de persoon of organisatie
-
-  - <https://docs.nde.nl/schema-profile/#Person-name>
-
-  - <https://docs.nde.nl/schema-profile/#Organization-name>
+#### [schema:license](https://schema.org/license)
+<b>Scope: </b>Verplicht. 
+<b>Beschrijving: Rechtenstatement van de afbeelding, verplicht als URI.</b> 
+<b>Waarde: URI</b> 
 
 > Als er gestructureerd afmetingen (**schema:QuantativeValue**) aanwezig
 > zijn, zijn de volgende velden verplicht:
