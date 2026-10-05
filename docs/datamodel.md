@@ -8,6 +8,11 @@ Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van h
 
 De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder 1.2. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder sectie 1.5.
 
+### Inhoudsopgave
+
+* auto-gen TOC:
+{:toc}
+
 ### Definities
 
 **Kardinaliteit**: hoe vaak een waarde mag voorkomen in een veld.
@@ -720,8 +725,8 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 
 <hr/>
 
-### [Place](https://schema.org/Place)
-<a name="Place"></a>
+### [GeoCoordinates](https://schema.org/GeoCoordinates)
+<a name="GeoCoordinates"></a>
 
 <hr/>
 
@@ -811,8 +816,8 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 {
   "@context": "https://schema.org",
-  "@type": ["Product"],
-  "name": "Fotograaf",
+  "@type": "Product",
+  "name": "Aquarelverf",
   "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/152a6b74-0549-4e53-aec0-f8209db88b86",
 }
 ```
