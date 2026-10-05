@@ -377,8 +377,7 @@ creativework --> "0..*" propval: identifier
 </pre>
 <!--```-->
 
-### [CreativeWork](https://schema.org/CreativeWork)
-<a name="CreativeWork"></a>
+### CreativeWork
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel.
 
 #### [schema:name](https://schema.org/name)
@@ -624,7 +623,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Kardinaliteit:</b> 1..1
 <hr/>
 
-### [Person](https://schema.org/Person)
+### Person
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> ???
@@ -682,8 +681,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 <hr/>
 
-### [MediaObject](https://schema.org/MediaObject)
-<a name="MediaObject"></a>
+### MediaObject
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
 <i>Verplicht</i><br/><br/> 
@@ -730,8 +728,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Kardinaliteit:</b> 0..1
 <hr/>
 
-### [Place](https://schema.org/Place)
-<a name="Place"></a>
+### Place
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> 
@@ -755,8 +752,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
 <hr/>
 
-### [GeoCoordinates](https://schema.org/GeoCoordinates)
-<a name="GeoCoordinates"></a>
+### GeoCoordinates
 
 Optionele geografische coördinaten van een plek. Onderstaande properties
 zijn verplicht als schema:GeoCoordinates aanwezig is.
@@ -776,8 +772,7 @@ zijn verplicht als schema:GeoCoordinates aanwezig is.
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-longitude)
 <hr/>
 
-### [AdministrativeArea](https://schema.org/AdministrativeArea)
-<a name="AdministrativeArea"></a>
+### AdministrativeArea
 
 Optionele provincie waarin de plek zich bevindt.
 
@@ -800,7 +795,6 @@ Voorbeeld: Zuid-Holland
 <hr/>
 
 ### [Occupation](https://schema.org/Occupation)
-<a name="Occupation"></a>
 
 De rol van de vervaardiger van het object, bv. ‘schilder’.
 
@@ -828,8 +822,7 @@ De rol van de vervaardiger van het object, bv. ‘schilder’.
 
 <hr/>
 
-### [PropertyValue](https://schema.org/PropertyValue)
-<a name="PropertyValue"></a>
+### PropertyValue
 
 IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn, kunnen worden toegevoegd door middel van deze PropertyValue klasse.
 
@@ -852,8 +845,7 @@ IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context be
 - <b>Kardinaliteit:</b> 1..1
 <hr/>
 
-### [DefinedTerm](https://schema.org/DefinedTerm)
-<a name="DefinedTerm"></a>
+### DefinedTerm
 
 Aanvullende relevante termen via relaties genre en about. [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms).
 
