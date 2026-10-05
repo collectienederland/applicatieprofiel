@@ -1,6 +1,4 @@
-# Applicatieprofiel voor CollectieNederland.nl
-
-## Inleiding
+# CollectieNederland.nl Applicatieprofiel 
 
 In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel is gebaseerd op het [<u>nieuwe datamodel voor Collectienederland.nl</u>](https://github.com/collectienederland/schema-profile), dat schema.org gebruikt als beschrijvende vocabulaire. Dit model is weer een uitbreiding op het [<u>NDE-applicatieprofiel</u>](https://docs.nde.nl/schema-profile/) ([versie 1.4.0](https://docs.nde.nl/schema-profile/#v1.4.0)) en volgt dit applicatieprofiel grotendeels. Dit document vormt de basis voor de aanlevervoorwaarden van CollectieNederland.nl
 
@@ -8,12 +6,28 @@ Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van h
 
 De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder 1.2. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder sectie 1.5.
 
-### Inhoudsopgave
+## Inhoudsopgave
+  * [Definities](#definities)
+  * [Velden voor CollectieNederland.nl](#velden-voor-collectienederlandnl)
+    * [Minimale en sterk aanbevolen  velden](#minimale-en-sterk-aanbevolen--velden)
+    * [Overzichtstabel minimale en sterk aanbevolen velden](#overzichtstabel-minimale-en-sterk-aanbevolen-velden)
+    * [Aanbevolen en optionele velden](#aanbevolen-en-optionele-velden)
+    * [Overzichtstabel aanbevolen en optionele velden](#overzichtstabel-aanbevolen-en-optionele-velden)
+    * [Afwijkingen ten opzichte van het NDE applicatieprofiel](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
+    * [Thesauri-gebruik](#thesauri-gebruik)
+  * [CollectieNederland.nl Applicatieprofiel](#collectienederlandnl-applicatieprofiel-1)
+    * [<a href="https://schema.org/CreativeWork" rel="nofollow">CreativeWork</a>](https://schema.org/CreativeWork)
+    * [<a href="https://schema.org/Person" rel="nofollow">Person</a>](https://schema.org/Person)
+    * [<a href="https://schema.org/MediaObject" rel="nofollow">MediaObject</a>](https://schema.org/MediaObject)
+    * [<a href="https://schema.org/Place" rel="nofollow">Place</a>](https://schema.org/Place)
+    * [<a href="https://schema.org/AdministrativeArea" rel="nofollow">AdministrativeArea</a>](https://schema.org/AdministrativeArea)
+    * [<a href="https://schema.org/GeoCoordinates" rel="nofollow">GeoCoordinates</a>](https://schema.org/GeoCoordinates)
+    * [<a href="https://schema.org/Occupation" rel="nofollow">Occupation</a>](https://schema.org/Occupation)
+    * [<a href="https://schema.org/PropertyValue" rel="nofollow">PropertyValue</a>](https://schema.org/PropertyValue)
+    * [<a href="https://schema.org/DefinedTerm" rel="nofollow">DefinedTerm</a>](https://schema.org/DefinedTerm)
+    * [<a href="https://schema.org/Product" rel="nofollow">Product</a>](https://schema.org/Product)
 
-* auto-gen TOC:
-{:toc}
-
-### Definities
+## Definities
 
 **Kardinaliteit**: hoe vaak een waarde mag voorkomen in een veld.
 Hierbinnen geeft dit document ook de specifieke datatypes aan (bijv. URI
@@ -50,7 +64,7 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 - **Optioneel:** de waarden die mogen worden aangeleverd
   (schema:material)
 
-### Velden voor CollectieNederland.nl
+## Velden voor CollectieNederland.nl
 
 CollectieNederland.nl is een Nederlands dienstplatform en toont de collectiedata in het Nederlands. Zorg dat de velden een ‘nl’ of ‘nl-NL’ tag hebben waarin de taal van de data wordt aangegeven.
 
@@ -285,19 +299,17 @@ schema:additionalType, zie sectie 1.2.2.</td>
 
 Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende thesauri aangenomen, afhankelijk van metadata veld: Art & Architecture Thesaurus (AAT), Cultuurhistorische Thesaurus (CHT), GeoNames en RKDartists. Al deze thesauri zijn te raadplegen via het [Termennetwerk](https://termennetwerk.netwerkdigitaalerfgoed.nl/nl). Bekijk hier een omschrijving van thesaurustermen in het NDE-applicatieprofiel: [<u>https://docs.nde.nl/schema-profile/#reference-terms.</u>](https://docs.nde.nl/schema-profile/#reference-terms.)
 
-## CollectieNederland.nl-applicatieprofiel 
+## CollectieNederland.nl Applicatieprofiel
 
-Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5.
-
-### Klassediagram
-
-Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
+Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
 <!--<pre class="mermaid">-->
 ```mermaid
 ---
   config:
     theme: forest
+    nodeSpacing: 50
+    rankSpacing: 150
     class:
       hideEmptyMembersBox: true
 ---
