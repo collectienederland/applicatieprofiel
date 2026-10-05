@@ -6,26 +6,6 @@ Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van h
 
 De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder 1.2. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder sectie 1.5.
 
-## Inhoudsopgave
-  * [Definities](#definities)
-  * [Velden voor CollectieNederland.nl](#velden-voor-collectienederlandnl)
-    * [Minimale en sterk aanbevolen  velden](#minimale-en-sterk-aanbevolen--velden)
-    * [Overzichtstabel minimale en sterk aanbevolen velden](#overzichtstabel-minimale-en-sterk-aanbevolen-velden)
-    * [Aanbevolen en optionele velden](#aanbevolen-en-optionele-velden)
-    * [Overzichtstabel aanbevolen en optionele velden](#overzichtstabel-aanbevolen-en-optionele-velden)
-    * [Afwijkingen ten opzichte van het NDE applicatieprofiel](#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel)
-    * [Thesauri-gebruik](#thesauri-gebruik)
-  * [CollectieNederland.nl Applicatieprofiel](#collectienederlandnl-applicatieprofiel-1)
-    * [CreativeWork](#creativework)
-    * [Person](#person)
-    * [MediaObject](#mediaobject)
-    * [Place](#place)
-    * [AdministrativeArea](#administrativearea)
-    * [GeoCoordinates](#geocoordinates)
-    * [Occupation](#occupation)
-    * [PropertyValue](#propertyvalue)
-    * [DefinedTerm](#definedterm)
-
 ## Definities
 
 **Kardinaliteit**: hoe vaak een waarde mag voorkomen in een veld.
@@ -67,7 +47,7 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 
 CollectieNederland.nl is een Nederlands dienstplatform en toont de collectiedata in het Nederlands. Zorg dat de velden een ‘nl’ of ‘nl-NL’ tag hebben waarin de taal van de data wordt aangegeven.
 
-### Minimale en sterk aanbevolen  velden
+### Minimale en sterk aanbevolen velden
 
 Bij het aanleveren van collectiedata aan CollectieNederland.nl wordt gekeken of de volgende minimale en sterk aanbevolen velden aanwezig zijn in de data en of de inhoud van deze velden in lijn is met het NDE-applicatieprofiel en de aanvullende bepalingen ten behoeve van CollectieNederland.nl. Als er voor een  veld een afwijking of versoepeling geldt, dan is deze leidend ten opzichte van het
 NDE-applicatieprofiel. Bij overlap tussen de twee profielen verwijst dit
