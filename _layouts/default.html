@@ -22,16 +22,6 @@
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
-        <ul>
-          <li><a href="#velden-voor-collectienederlandnl">Velden voor CollectieNederland.nl</a></li>
-          <li><a href="#collectienederlandnl-applicatieprofiel-1}">CollectieNederland.nl Applicatieprofiel</a>
-            <ul>
-              <li><a href="#creativework">CreativeWork</a></li>
-              <li><a href="#person">Person</a></li>
-            </ul>
-          </li>
-        </ul>
-
         {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
         {% endif %}
@@ -60,8 +50,18 @@
       <section>
 
       {{ content }}      
+      {% include anchor_headings.html html=content anchorBody="#" %}
+      <ul>
+        <li><a href="#velden-voor-collectienederlandnl">Velden voor CollectieNederland.nl</a></li>
+        <li><a href="#collectienederlandnl-applicatieprofiel-1}">CollectieNederland.nl Applicatieprofiel</a>
+          <ul>
+            <li><a href="#creativework">CreativeWork</a></li>
+            <li><a href="#person">Person</a></li>
+          </ul>
+        </li>
+      </ul>
       
-    </section>
+      </section>
       <footer>
         {% if site.github.is_project_page %}
         <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
