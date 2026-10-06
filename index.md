@@ -690,7 +690,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 <hr/>
 
-### [MediaObject]
+### [MediaObject](https://schema.org/MediaObject)
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObject).
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
@@ -724,7 +724,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObje
 - <b>Kardinaliteit:</b> 0..1
 <hr/>
 
-### Place
+### [Place](https://schema.org/Place)
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 
 #### [schema:name](https://schema.org/name)
@@ -762,14 +762,14 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 Optionele geografische coördinaten van een plek. Onderstaande properties zijn verplicht als schema:GeoCoordinates aanwezig is. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates).
 
 #### [schema:latitude](https://schema.org/latitude)
-<i>Verplicht</i><br/><br/> 
+<i>Verplicht</i><br/> 
 - <b>Beschrijving:</b> Breedtegraad van de vindplaats of locatie van vervaardiging. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-latitude)
 
 #### [schema:longitude](https://schema.org/longitude)
-<i>Verplicht</i><br/><br/> 
+<i>Verplicht</i><br/> 
 - <b>Beschrijving:</b> Lengtegraad van de vindplaats of vervaardiging.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -781,7 +781,7 @@ Optionele geografische coördinaten van een plek. Onderstaande properties zijn v
 Optionele provincie waarin de plek zich bevindt.
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/><br/> 
+<i>Verplicht</i><br/>
 - <b>Beschrijving:</b> Naam van de plek. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
