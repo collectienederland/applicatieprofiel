@@ -554,8 +554,13 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 - <b>Beschrijving:</b> referentie naar een publicatie of boek.
 - <b>Datatype:</b> string
 - <b>Voorbeeld:</b> 
+
 ```
-van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near East. OMROL 69, blz. 13
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "citation": "van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near East. OMROL 69, blz. 13"@nl,
+}
 ```
 
 #### [schema:url](https://schema.org/url)
@@ -565,8 +570,11 @@ van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
 ```
-http://hdl.handle.net/10934/RM0001.COLLECT.250239
-https://muiderslot.adlibhosting.com/details/museum/10000349
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "url": "http://hdl.handle.net/10934/RM0001.COLLECT.250239",
+}
 ```
 
 #### [schema:license](https://schema.org/license)
@@ -624,7 +632,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 
 #### [schema:creator](https://schema.org/creator)
-<i>Verplicht</i><br/><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 1..1
@@ -744,15 +752,13 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 #### [schema:addressRegion](https://schema.org/addressRegion)
 <i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Provincie waar het object zich bevindt.
-- <b>Datatype:</b>  [<a href="https://schema.org/AdministrativeArea" rel="nofollow">AdministrativeArea</a>](https://schema.org/AdministrativeArea)
-- <b>Kardinaliteit:</b> 0..*
-- [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
-<hr/>
+- <b>Datatype:</b>  [AdministrativeArea](#administrativearea)
+- <b>Kardinaliteit:</b> 0..1
 
 #### [schema:geo](https://schema.org/geo)
 <i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> 
-- <b>Datatype:</b>  [<a href="#geocoordinates">GeoCoordinates</a>]
+- <b>Datatype:</b>  <a href="#geocoordinates">GeoCoordinates</a>
 - <b>Kardinaliteit:</b> 0..*
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates)
 <hr/>
