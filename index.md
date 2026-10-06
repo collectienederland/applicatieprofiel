@@ -1,12 +1,14 @@
 # CollectieNederland.nl Applicatieprofiel 
 
-In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel is gebaseerd op het [<u>nieuwe datamodel voor Collectienederland.nl</u>](https://github.com/collectienederland/schema-profile), dat schema.org gebruikt als beschrijvende vocabulaire. Dit model is weer een uitbreiding op het [<u>NDE-applicatieprofiel</u>](https://docs.nde.nl/schema-profile/) ([versie 1.4.0](https://docs.nde.nl/schema-profile/#v1.4.0)) en volgt dit applicatieprofiel grotendeels. Dit document vormt de basis voor de aanlevervoorwaarden van CollectieNederland.nl
+## Inleiding
 
-Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichten van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder 1.2.5.
+In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel beschrijft hoe bronhouders het nieuwe datamodel voor Collectienederland.nl kunnen toepassen. Het applicatieprofiel maakt gebruik van [Schema.org](https://schema.org/) als beschrijvende vocabulaire. Dit applicatieprofiel is een uitbreiding op het [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/) ([versie 1.4.0](https://docs.nde.nl/schema-profile/#v1.4.0)) en volgt dit applicatieprofiel grotendeels. Dit document vormt de basis voor de aanlevervoorwaarden van [CollectieNederland.nl](https://www.collectienederland.nl/).
 
-De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder 1.2. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder sectie 1.5.
+Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichte van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder <a href="#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel">Afwijkingen ten opzichte van het NDE applicatieprofiel</a>.
 
-## Definities
+De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder <a href="#minimale-en-sterk-aanbevolen-velden">Minimale en sterk aanbevolen velden</a>. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder <a href="#thesauri-gebruik">Thesauri-gebruik</a>.
+
+### Definities
 
 **Kardinaliteit**: hoe vaak een waarde mag voorkomen in een veld.
 Hierbinnen geeft dit document ook de specifieke datatypes aan (bijv. URI
@@ -70,7 +72,7 @@ leveren dat iets beschrijft van en/of over het object (CreativeWork).
 |----|----|----|----|----|
 | MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |
 | CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |
-| CreativeWork | Schema:isPartOf\>schema:Dataset | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
+| CreativeWork | Schema:isPartOf | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
 | CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |
 | CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |
 | CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |
@@ -375,7 +377,8 @@ creativework --> "0..*" propval: identifier
 <!--```-->
 
 ### [CreativeWork](http://schema.org/CreativeWork)
-De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel.
+
+De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork).
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht, tenzij [schema:additionalType](https://schema.org/additionalType) aanwezig is. </i>
@@ -402,6 +405,13 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
   }
 }
 ```
+
+#### [schema:associatedMedia](https://schema.org/associatedMedia)
+<i>Optioneel. </i>
+- <b>Beschrijving:</b> 
+- <b>Datatype:</b> [MediaObject](#MediaObject)
+- <b>Kardinaliteit:</b> 0..* 
+- [Meer informatie](https://docs.nde.nl/schema-profile/#MediaObject)
 
 #### [schema:material](https://schema.org/material)
 <i>Optioneel</i><br/>
@@ -501,13 +511,16 @@ Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten 
 - <b>Datatype:</b> string
 - <b>Voorbeeld:</b> 
 ```
-Uitgeverij Noordzon
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "publisher": "Uitgeverij Noordzon"@nl,
+}
 ```
-
 
 #### [schema:temporal](https://schema.org/temporal)
 <i>Optioneel</i><br/>
-<i>Toevoeging op het NDE-applicatieprofiel, vanwege collecties diegeen datering hebben, maar uit een bepaalde periode komen zoals archeologische opgravingen.</i>
+<br/><i>Toevoeging op het NDE-applicatieprofiel, vanwege collecties diegeen datering hebben, maar uit een bepaalde periode komen zoals archeologische opgravingen.</i>
 - <b>Beschrijving:</b> onzekerheidsaanduiding datering als vrije tekst, bijvoorbeeld:
   - Ca.
   - Circa
@@ -520,11 +533,8 @@ Uitgeverij Noordzon
   "@context": "https://schema.org",
   "@id": "https://www.wikidata.org/wiki/Q185372",
   "@type": "CreativeWork",
-  "temporal": {
-    "@language": "en",
-    "@value": "circa 1665"
+  "temporal": "circa 1665"@nl
   }
-}
 ```
 
 #### [schema:datePublished](https://schema.org/datePublished)
@@ -620,10 +630,12 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Kardinaliteit:</b> 1..1
 <hr/>
 
-### Person
+### [Person](https://schema.org/Person)
+
+ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person).
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/><br/> ???
+<i>Verplicht</i><br/>
 - <b>Beschrijving:</b>  Naam van de persoon of organisatie
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 1..1
@@ -678,7 +690,8 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 ```
 <hr/>
 
-### MediaObject
+### [MediaObject]
+Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObject).
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
 <i>Verplicht</i><br/><br/> 
@@ -698,20 +711,6 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
-#### [schema:encodingFormat](https://schema.org/encodingFormat)
-<i>Optioneel</i><br/> 
-- <b>Beschrijving:</b>  
-- <b>Datatype: string</b> 
-- <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> 
-```
-{
-  "@context": "https://schema.org",
-  "@type": "MediaObject",
-  "encodingformat": "image/jpeg"
-}
-```
-
 #### [schema:copyrightHolder](https://schema.org/copyrightHolder)
 <i>Optioneel</i><br/> 
 - <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
@@ -726,6 +725,7 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 <hr/>
 
 ### Place
+Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> 
@@ -749,10 +749,17 @@ Uitbreiding NDE-applicatieprofiel voor generieke attributie-/credittekst. Let op
 - [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
 <hr/>
 
-### GeoCoordinates
+#### [schema:geo](https://schema.org/geo)
+<i>Optioneel</i><br/> 
+- <b>Beschrijving:</b> 
+- <b>Datatype:</b>  [<a href="#geocoordinates">GeoCoordinates</a>]
+- <b>Kardinaliteit:</b> 0..*
+- [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates)
+<hr/>
 
-Optionele geografische coördinaten van een plek. Onderstaande properties
-zijn verplicht als schema:GeoCoordinates aanwezig is.
+### [GeoCoordinates](https://schema.org/GeoCoordinates)
+
+Optionele geografische coördinaten van een plek. Onderstaande properties zijn verplicht als schema:GeoCoordinates aanwezig is. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates).
 
 #### [schema:latitude](https://schema.org/latitude)
 <i>Verplicht</i><br/><br/> 
@@ -769,7 +776,7 @@ zijn verplicht als schema:GeoCoordinates aanwezig is.
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-longitude)
 <hr/>
 
-### AdministrativeArea
+### [AdministrativeArea](https://schema.org/AdministrativeArea)
 
 Optionele provincie waarin de plek zich bevindt.
 
@@ -793,7 +800,7 @@ Voorbeeld: Zuid-Holland
 
 ### [Occupation](https://schema.org/Occupation)
 
-De rol van de vervaardiger van het object, bv. ‘schilder’.
+De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Occupation).
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> 
@@ -819,7 +826,7 @@ De rol van de vervaardiger van het object, bv. ‘schilder’.
 
 <hr/>
 
-### PropertyValue
+### [PropertyValue](https://schema.org/PropertyValue)
 
 IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn, kunnen worden toegevoegd door middel van deze PropertyValue klasse.
 
@@ -842,9 +849,8 @@ IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context be
 - <b>Kardinaliteit:</b> 1..1
 <hr/>
 
-### DefinedTerm
-
-Aanvullende relevante termen via relaties genre en about. [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms).
+### [DefinedTerm](https://schema.org/DefinedTerm)
+Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference-terms).
 
 #### [schema:name](https://schema.org/name)
 <i>Verplicht</i><br/><br/> 
