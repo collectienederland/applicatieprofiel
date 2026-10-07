@@ -31,13 +31,10 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 **Verplichtingsniveau:**
 
 - **Verplicht**: de waarden die altijd moeten worden aangeleverd
-  (schema:license)
 
-- **Aanbevolen**: de waarden waarvan wordt aanbevolen dat ze worden
-  aangeleverd
+- **Aanbevolen**: de waarden waarvan wordt aanbevolen dat ze worden aangeleverd
 
 - **Optioneel:** de waarden die mogen worden aangeleverd
-  (schema:material)
 
 ## Velden voor CollectieNederland.nl
 
@@ -252,7 +249,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
-- <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
+- <b>Beschrijving:</b> Actuele juridische status 
 - <b>Waarde:</b> *Waarde moet nog bepaald worden*
 
 #### [schema:isPartOf](https://schema.org/isPartOf) (verplicht)
@@ -326,9 +323,8 @@ MA.2020.003",
 - <b>Beschrijving:</b> datum waarop het object is uitgegeven door de uitgever.
 - <b>Datatype:</b> date, conform ISO-8601
 
-#### [schema:sdDatePublished](https://schema.org/sdDatePublished)
-<i>Verplicht</i><br/>
-- <b>Beschrijving:</b> de datum waarop de metadata is gepubliceerd, Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished).
+#### [schema:sdDatePublished](https://schema.org/sdDatePublished) (verplicht)
+- <b>Beschrijving:</b> datum van de laatste wijziging van de object-metadata, Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished).
 - <b>Datatype:</b> date, conform ISO-8601
 
 #### [schema:citation](https://schema.org/citation)
@@ -346,8 +342,8 @@ MA.2020.003",
 ```
 
 #### [schema:url](https://schema.org/url)
-<i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Link terug naar het record bij de bronhouder.
+<i>Aanbevolen</i><br/> 
+- <b>Beschrijving:</b> CollectieNederland.nl toont de gegevens van jouw object. Wanneer een bezoeker meer informatie over het object wil bekijken, kan diegene via deze link naar de webpagina van jouw organisatie gaan. Gebruik bij voorkeur een URI of gebruik een PID als die beschikbaar is.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
@@ -374,7 +370,7 @@ MA.2020.003",
 ```
 
 #### [schema:description](https://schema.org/description)
-<i>Optioneel</i><br/>
+<i>Aanbevolen</i><br/>
 - <b>Beschrijving:</b> beschrijving van het object. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-description).
 - <b>Voorbeeld:</b>
 ```
@@ -386,7 +382,7 @@ MA.2020.003",
 ```
 
 #### [schema:size](https://schema.org/size)
-<i>Optioneel</i><br/>
+<i>Aanbevolen</i><br/>
 - <b>Beschrijving:</b> afmeting van het object in hoogte x breedte x diepte in
   cm als een waarde.
 - <b>Datatype:</b> string
@@ -417,8 +413,8 @@ MA.2020.003",
 ```
 
 #### [schema:creator](https://schema.org/creator)
-<i>Optioneel</i><br/> 
-- <b>Beschrijving</b>: Maker van het werk, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
+<i>Aanbevolen</i><br/> 
+- <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn. , zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 0..1
 <hr/>
@@ -428,11 +424,11 @@ MA.2020.003",
  Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person).
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/>
+<i>Aanbevolen</i><br/>
 - <b>Beschrijving:</b>  Naam van de persoon of organisatie
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 1..1
-- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
+- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-name) voor meer informatie en voorbeelden.
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
@@ -528,7 +524,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObje
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/><br/> 
+<i>Aanbevolen</i><br/><br/> 
 - <b>Beschrijving:</b> Naam van de plek. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -560,14 +556,14 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 Geografische coördinaten van een plek. Onderstaande properties zijn verplicht als schema:GeoCoordinates aanwezig is. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates).
 
 #### [schema:latitude](https://schema.org/latitude)
-<i>Verplicht</i><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Breedtegraad van de vindplaats of locatie van vervaardiging. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 - [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-latitude)
 
 #### [schema:longitude](https://schema.org/longitude)
-<i>Verplicht</i><br/> 
+<i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Lengtegraad van de vindplaats of vervaardiging.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -579,7 +575,7 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 Provincie waarin de plek zich bevindt.
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> Naam van de plek. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -609,8 +605,8 @@ Provincie waarin de plek zich bevindt.
 De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Occupation).
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/><br/> 
-- <b>Beschrijving:</b> Naam van de rol. 
+<i>Optioneel</i><br/><br/> 
+- <b>Beschrijving:</b> Rol van de vervaardiger. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 
@@ -637,13 +633,13 @@ De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [document
 IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn, kunnen worden toegevoegd door middel van deze PropertyValue klasse.
 
 #### [schema:propertyID](https://schema.org/propertyID)
-<i>Verplicht</i><br/>
+<i>Verplicht bij PropertyValue</i><br/>
 - <b>Beschrijving:</b> Uniek kenmerk van het soort identifier. 
 - <b>Datatype:</b>  URI of string
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:value](https://schema.org/value)
-<i>Verplicht</i><br/>
+<i>Verplicht bij PropertyValue</i><br/>
 - <b>Beschrijving:</b> Waarde van de identifier. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
@@ -659,7 +655,7 @@ IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context be
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference-terms).
 
 #### [schema:name](https://schema.org/name)
-<i>Verplicht</i><br/>
+<i>Optioneel</i><br/>
 - <b>Beschrijving:</b> Naam van de term, bijvoorbeeld de naam van het genre.  
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
