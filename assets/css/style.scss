@@ -15,7 +15,10 @@ header {
   position: sticky;
   top: 1rem;
   align-self: flex-start;
-  max-height: calc(100vh - 2rem);
+}
+
+.toc {
+  max-height: calc(100vh - 8rem);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
