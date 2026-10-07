@@ -33,9 +33,6 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 - **Verplicht**: de waarden die altijd moeten worden aangeleverd
   (schema:license)
 
-- **Sterk aanbevolen**: de waarden waarvan sterk wordt aanbevolen dat ze
-  worden aangeleverd
-
 - **Aanbevolen**: de waarden waarvan wordt aanbevolen dat ze worden
   aangeleverd
 
