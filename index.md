@@ -495,13 +495,13 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObje
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
-#### [schema:thumbnailUrl](https://schema.org/thumbnailUrl)
+#### [schema:thumbnailUrl](https://schema.org/thumbnailUrl) (verplicht)
 <i>Verplicht bij schema:concentUrl</i><br/><br/> 
 - <b>Beschrijving:</b>  Directe URI naar de thumbnail, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-thumbnailUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
-#### [schema:license](https://schema.org/license)
+#### [schema:license](https://schema.org/license) (verplicht)
 <i>Verplicht bij schema:concentUrl</i><br/><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding volgens CreativeCommons.org (als bronhouder rechthebbende is) of Rightstatements.org (als bronhouder <b>niet</br> de rechthebbende is), verplicht als URI.
 - <b>Datatype:</b>  URI 
