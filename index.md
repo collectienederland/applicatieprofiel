@@ -43,232 +43,22 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 
 CollectieNederland.nl is een Nederlands dienstplatform en toont de collectiedata in het Nederlands. Zorg dat de velden een ‘nl’ of ‘nl-NL’ tag hebben waarin de taal van de data wordt aangegeven.
 
-### Minimale en sterk aanbevolen velden
+### Velden
 
-Bij het aanleveren van collectiedata aan CollectieNederland.nl wordt gekeken of de volgende minimale en sterk aanbevolen velden aanwezig zijn in de data en of de inhoud van deze velden in lijn is met het NDE-applicatieprofiel en de aanvullende bepalingen ten behoeve van CollectieNederland.nl. Als er voor een  veld een afwijking of versoepeling geldt, dan is deze leidend ten opzichte van het
-NDE-applicatieprofiel. Bij overlap tussen de twee profielen verwijst dit
-document door naar het NDE-applicatieprofiel.
+Bij delen van collectiedata aan CollectieNederland.nl wordt gekeken of de minimale velden aanwezig zijn in de data en of de inhoud van deze velden in lijn is met het NDE-applicatieprofiel en de aanvullende bepalingen ten behoeve van CollectieNederland.nl. Als er voor een  veld een afwijking of versoepeling geldt, dan is deze leidend ten opzichte van het NDE-applicatieprofiel. Bij overlap tussen de twee profielen verwijst dit document door naar het NDE-applicatieprofiel. Afwijkingen en versoepelingen worden toegelicht bij de properties. 
 
-#### Overzichtstabel minimale en sterk aanbevolen velden
+#### Minimale publicatievoorwaarden
 
-In de onderstaande tabel staat een overzicht van de minimale (ofwel
-verplichte) en sterk aanbevolen velden voor publicatie van een dataset
-op CollectieNederland.nl. Er zijn een aantal ‘keuzevelden’ opgenomen.
-Voor deze velden geldt:
-
-\- Keuzeveld 1: er moet ten minste één veld aanwezig zijn wat kan
-functioneren als titel.
-
-\- Keuzeveld 2: er wordt sterk aanbevolen ten minste één veld aan te
-leveren wat kan functioneren als datering.
-
-\- Keuzeveld 3: er wordt sterk aanbevolen ten minste één veld aan te
-leveren dat iets beschrijft van en/of over het object (CreativeWork).
+In de onderstaande tabel staat een overzicht van de verplichte velden voor publicatie op CollectieNederland.nl.
 
 | *Entiteit* | *Veld* | *Betekenis* | *Verplicht* | *Type* |
 |----|----|----|----|----|
-| Schema:MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |
-| Schema:CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |
 | Schema:CreativeWork | Schema:isPartOf | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
 | Schema:CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |
-| Schema:CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |
-| Schema:CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |
-| Schema:CreativeWork | schema:temporal | Periode van vervaardiging | Keuzeveld 2 – sterk aanbevolen | String |
-| Schema:CreativeWork | schema:dateCreated | Vervaardigingsdatum | Keuzeveld 2 – sterk aanbevolen | Date |
-| Schema:CreativeWork | schema:description | Beschrijving van het object | Keuzeveld 3 – sterk aanbevolen | String |
-| Schema:CreativeWork | schema:material | Materiaal | Keuzeveld 3 – sterk aanbevolen | String/URI |
-| Schema:CreativeWork | schema:size | Afmetingen | Keuzeveld 3 – sterk aanbevolen | String/QuantitativeValue |
-| Schema:CreativeWork | schema:locationCreated | Plaats van productie of vervaardiging | Keuzeveld 3 – sterk aanbevolen | String/URI |
-
-### Aanbevolen en optionele velden
-
-In de onderstaande tabel staat een overzicht van de velden die worden aanbevolen of optioneel zijn om aan te leveren. In sectie 1.3 worden de velden toegelicht. In sommige gevallen is het zo dat als een optioneel veld wordt aangeleverd, er een verplicht veld bijkomt – dat aan het optionele veld verbonden is. Mocht dit zo zijn dan staat dit per veld aangegeven in de kolom optioneel/aanbevolen.
-
-#### Overzichtstabel aanbevolen en optionele velden
-
-| **Entiteit** | **Veld** | **Inhoud van het veld** | **Verplicht** | **Type** | **NDE-profiel** |
-|----|----|----|----|----|----|
-| Schema:CreativeWork | schema:alternateName | alternatieve titel van het object | Optioneel | String | Nee, uitbreiding CN.nl |
-| Schema:Creative:Work | Schema:license | Rechtenstatement van het object zelf | Aanbevolen | URI | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | Schema:url | Link van het object op de website van de bronhouder | Aanbevolen | URI | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:creditText | geassocieerde persoon of organisatie | Optioneel | String/URI | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:publisher | Uitgever object | Optioneel | String | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:datePublished | datum van uitgave door uitgever | Optioneel | Date | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:citation | Referentie naar uitgave of bron | Optioneel | String | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:temporal | Tijdsaanduiding in platte tekst | Optioneel | String | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:isPartOf/hasPart \>CreativeWork | Objectonderdelen | Aanbevolen | URI | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:genre | Onderwerp | Aanbevolen | String/URI | Ja |
-| Schema:CreativeWork | schema:about | Geassocieerde persoon of concept | Aanbevolen | String/URI | Ja |
-| Schema:CreativeWork | schema:identifier | Objectnummer | Aanbevolen | String/URI | Ja |
-| Schema:CreativeWork | schema:creator | Vervaardiger | Aanbevolen | String/URI | Ja |
-| Schema:MediaObject | schema:contentUrl | Afbeelding | Aanbevolen | URI | Ja |
-| Schema:MediaObject | schema:license | Rechtenstatement afbeelding | Ja, bij schema:contentUrl | URI | Ja |
-| Schema:MediaObject | Schema:copyrightHolder | Rechthebbenden van een MediaObject | Optioneel | Schema:Person | ja |
-| Schema:MediaObject | schema:thumbnailUrl | Verkleinde afbeelding | Verplicht met contentUrl | URI | Ja |
-| Schema:Person | schema:name | Vervaardiger persoon of organisatie | Aanbevolen | String/URI | Ja |
-| Schema:Person | schema:hasOccupation | Rol van de vervaardiger | Optioneel | String/URI | Ja |
-| Schema:Person | schema:birthDate | Geboortedatum vervaardiger | Optioneel | Date | Ja |
-| Schema:Person | schema:birthPlace | Geboorteplaats vervaardiger | Optioneel | String/URI | Ja |
-| Schema:Person | schema:deathDate | Sterfdatum vervaardiger | Optioneel | Date | Ja |
-| Schema:Person | schema: deathPlace | Sterfplaats vervaardiger | Optioneel | String/URI | Ja |
-| Schema:Place | schema:latitude | Breedtegraad | Optioneel | Tekst | Ja |
-| Schema:Place | schema:longitude | Lengtegraad | Optioneel | Tekst | Ja |
-| Schema:Place | schema:addressRegion | Provincie | Optioneel | String/URI | Ja |
-| Schema:MediaObject | schema:encodingFormat | Type media | Optioneel | String/URI | Nee, uitbreiding CN.nl |
-
-### Afwijkingen ten opzichte van het NDE applicatieprofiel
-
-In de onderstaande tabellen zijn de verschillen terug te vinden tussen hetCollectieNederland.nl-applicatieprofiel en het NDE-applicatieprofiel. Het gaat hier in de eerste tabel om verschillen in de aanwezigheid van Classes en Properties. In de tweede tabel worden de verschillen aangegeven in Classes en Properties die zowel het NDE-applicatieprofiel als CollectieNederland.nl-applicatieprofiel kennen, maar waarbij CollectieNederland.nl een ander verplichtingsniveau hanteert (bijv. optioneel i.p.v. verplicht) of een andere invulling geeft.
-
-<table>
-<colgroup>
-<col style="width: 41%" />
-<col style="width: 9%" />
-<col style="width: 22%" />
-<col style="width: 26%" />
-</colgroup>
-<thead>
-<tr>
-<th colspan="4"><strong>CollectieNederland.nl ten opzichte van NDE —
-toevoegingen</strong> <strong>in Classes en Properties</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Property/Class</strong></td>
-<td><strong>In NDE profiel</strong></td>
-<td><strong>In CN.NL 2.0 Datamodel en applicatieprofiel</strong></td>
-<td><strong>Uitleg op toevoeging</strong></td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:publisher</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Uitgever van een boek. Publisher, ofwel, bronhouder komt mee vanuit
-de datasetbeschrijving van de dataset in het dataset register.</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:license</td>
-<td>Nee</td>
-<td>Ja — aanbevolen</td>
-<td>Rechtenstatement van het object zelf</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:temporal</td>
-<td>Nee</td>
-<td>Ja — keuzeveld 2</td>
-<td>Vrije-tekst datering (bijv. “ca. 1650”) als aanvulling op
-schema:dateCreated, voor onzekere of ongestructureerde dateringen.</td>
-</tr>
-<tr>
-<td>MediaObject&gt;schema:copyrightNotice</td>
-<td>Nee</td>
-<td>Ja — verplicht (alleen Rijksmusea)</td>
-<td>Toevoeging voor de Erfgoedwet-verplichtingen van Rijksmusea.</td>
-</tr>
-<tr>
-<td>Place&gt;schema:addressRegion</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Coördinaten en provincie/regio, voor kaartweergave en filtering op
-CNNL.</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:isPartOf (hasPart)&gt;CreativeWork</td>
-<td>Nee</td>
-<td>Ja - aanbevolen</td>
-<td>Relatie voor het aangeven van een deelcollectie binnen een
-dataset.</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:alternateName</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Alternatieve naam/titel van object of
-vervaardiger.<mark></mark></td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:creditText</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Generieke attributie-/credittekst. Let op: voor het specifieke geval
-van eigendomsgeschiedenis wordt dit veld juist afgeraden (te weinig
-gestructureerd) — hier gaat het om een breder, algemeen gebruik.</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:citation</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Verwijzing naar publicaties of bronnen waarin het object wordt
-beschreven.</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:datePublished</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Datum van publicatie, bijvoorbeeld van een boek.<mark></mark></td>
-</tr>
-<tr>
-<td>MediaObject&gt;schema:encodingFormat</td>
-<td>Nee</td>
-<td>Ja — optioneel</td>
-<td>Type media</td>
-</tr>
-<tr>
-<td>schema:AdministrativeArea</td>
-<td>Nee</td>
-<td>Ja – optioneel</td>
-<td>De provincie waarin de plek (Schema:Place) zich bevindt.</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 16%" />
-<col style="width: 58%" />
-</colgroup>
-<thead>
-<tr>
-<th colspan="3"><strong>CollectieNederland.nl ten opzichte van NDE —
-afwijkend verplichtingsniveau</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Property</strong></td>
-<td><strong>NDE</strong></td>
-<td><strong>CN</strong></td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:creator</td>
-<td>Verplicht als de vervaardiger bekend is.</td>
-<td>Aanbevolen</td>
-</tr>
-<tr>
-<td>MediaObject&gt;schema:thumbnailUrl</td>
-<td>Verplicht op MediaObject.</td>
-<td></td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:associatedMedia / afbeelding</td>
-<td>Verplicht indien beschikbaar.</td>
-<td>Aanbevolen</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:identifier / PID</td>
-<td>PID verplicht.</td>
-<td>Aanbevolen</td>
-</tr>
-<tr>
-<td>CreativeWork&gt;schema:name</td>
-<td>Verplicht op CreativeWork</td>
-<td>Aanbevolen. CollectieNederland.nl vraagt schema:name of
-schema:additionalType, zie sectie 1.2.2.</td>
-</tr>
-</tbody>
-</table>
+| Schema:CreativeWork | schema:name | Titel | Ja | String |
+| Schema:CreativeWork | schema:additionalType | Soort object | Ja, als er geen titel beschikbaar is| String of URI |
+| Schema:CreativeWork | schema:copyrightNotice | Actuele juridische status |  Alleen Rijksmusea | String |
+| Schema:CreativeWork | schema:LEEEG | Conditiestatus | Alleen Rijksmusea| String 
 
 ### Thesauri-gebruik
 
@@ -377,15 +167,15 @@ creativework --> "0..*" propval: identifier
 
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork).
 
-#### [schema:name](https://schema.org/name)
-<i>Verplicht, tenzij [schema:additionalType](https://schema.org/additionalType) aanwezig is. </i>
+#### [schema:name](https://schema.org/name) (verplicht)
+<i>Verplicht, tenzij deze niet aanwezig is, dan is [schema:additionalType](https://schema.org/additionalType) verplicht. </i>
 - <b>Beschrijving:</b> titel van het object
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
 
-#### [schema:additionalType](https://schema.org/additionalType)
-<i>Verplicht, tenzij [schema:name](https://schema.org/name) aanwezig is. </i>
+#### [schema:additionalType](https://schema.org/additionalType) (verplicht)
+<i>Verplicht, als [schema:name](https://schema.org/name) niet aanwezig is. </i>
 - <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij). Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) en[URL](https://schema.org/URL)
 - <b>Kardinaliteit:</b> 0..* ???
@@ -410,7 +200,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..* 
 
 #### [schema:material](https://schema.org/material)
-<i>Optioneel</i><br/>
+<i>Aanbevolen</i><br/>
 - <b>Beschrijving:</b> materiaal waaruit het object bestaat. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-material)
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
 - <b>Kardinaliteit:</b> 0..* 
@@ -428,7 +218,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:genre](https://schema.org/genre)
-<i>Optioneel</i><br/>
+<i>Aanbevolen</i><br/>
 - <b>Beschrijving:</b> Onderwerp van het afgebeelde op het object. Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-genre)
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) 
 - <b>Kardinaliteit:</b> 0..* 
@@ -461,13 +251,11 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 }
 ```
 
-#### [schema:copyrightNotice](https://schema.org/copyrightNotice)
-<i>Verplicht voor Rijksmusea</i><br/>
+#### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
 - <b>Beschrijving:</b> Actuele juridische status (Rijksmusea, Erfgoedwet)
 - <b>Waarde:</b> *Waarde moet nog bepaald worden*
 
-#### [schema:isPartOf](https://schema.org/isPartOf) (Dataset)
-<i>Verplicht</i><br/>
+#### [schema:isPartOf](https://schema.org/isPartOf) (verplicht)
 - <b>Beschrijving:</b> Dataset waartoe het werk behoort
 - <b>Waarde:</b> Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
 - <b>Datatype:</b> URI
@@ -481,7 +269,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 }
 ```
 
-#### [schema:hasPart](https://schema.org/hasPart) (Object onderdelen)
+#### [schema:hasPart](https://schema.org/hasPart) 
 <i>Optioneel</i><br/>
 <br/><i>Uitbreiding op het NDE-applicatieprofiel voor ensembles.</i><br/>
 
@@ -493,7 +281,9 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "hasPart": "https://linkeddata.cultureelerfgoed.nl/rce/rijkscollectie-rce/id/creativework/74c80173-b77c-3799-afbd-72a13f31fd58",
+  "hasPart": "MA-2020.001
+MA.2020.002
+MA.2020.003",
 }
 ```
 
