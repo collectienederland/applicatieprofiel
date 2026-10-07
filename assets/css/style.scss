@@ -12,13 +12,12 @@
 }
 
 header {
-  position: sticky;
-  top: 1rem;
-  align-self: flex-start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .toc {
-  max-height: calc(100vh - 8rem);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
