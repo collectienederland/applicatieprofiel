@@ -173,7 +173,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 <i>Verplicht, als [schema:name](https://schema.org/name) niet aanwezig is. </i>
 - <b>Beschrijving:</b> Specifiek soort object (bijv. schilderij). Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) en[URL](https://schema.org/URL)
-- <b>Kardinaliteit:</b> 0..* ???
+- <b>Kardinaliteit:</b> 0..*
 
 - <b>Voorbeeld:</b> 
 ```
