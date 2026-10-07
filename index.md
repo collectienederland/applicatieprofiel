@@ -6,7 +6,7 @@ In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederl
 
 Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichte van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder <a href="#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel">Afwijkingen ten opzichte van het NDE applicatieprofiel</a>.
 
-De velden die minimaal nodig zijn om data aan te leveren aan CollectieNederland.nl staan genoteerd onder <a href="#minimale-en-sterk-aanbevolen-velden">Minimale en sterk aanbevolen velden</a>. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder <a href="#thesauri-gebruik">Thesauri-gebruik</a>.
+De velden die minimaal nodig zijn om data aan te delen aan CollectieNederland.nl staan genoteerd onder <a href="#minimale-en-sterk-aanbevolen-velden">Minimale en sterk aanbevolen velden</a>. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder <a href="#thesauri-gebruik">Thesauri-gebruik</a>.
 
 ### Definities
 
@@ -30,11 +30,11 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 
 **Verplichtingsniveau:**
 
-- **Verplicht**: de waarden die altijd moeten worden aangeleverd
+- **Verplicht**: de waarden die altijd moeten worden aangeleverd.
 
-- **Aanbevolen**: de waarden waarvan wordt aanbevolen dat ze worden aangeleverd
+- **Aanbevolen**: de waarden waarvan wordt aanbevolen dat ze worden aangeleverd. 
 
-- **Optioneel:** de waarden die mogen worden aangeleverd
+- **Optioneel:** de waarden die mogen worden aangeleverd.
 
 ## Velden voor CollectieNederland.nl
 
@@ -165,7 +165,7 @@ creativework --> "0..*" propval: identifier
 De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klasse worden cultuurhistorische objecten omschreven in dit profiel. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork).
 
 #### [schema:name](https://schema.org/name) (verplicht)
-<i>Verplicht, tenzij deze niet aanwezig is, dan is [schema:additionalType](https://schema.org/additionalType) verplicht. </i>
+<i>Verplicht, als titel niet aanwezig is, dan is [schema:additionalType](https://schema.org/additionalType) verplicht. </i>
 - <b>Beschrijving:</b> titel van het object
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
@@ -173,7 +173,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 
 #### [schema:additionalType](https://schema.org/additionalType) (verplicht)
 <i>Verplicht, als [schema:name](https://schema.org/name) niet aanwezig is. </i>
-- <b>Beschrijving:</b> Specifiek type van het werk (bijv. schilderij). Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
+- <b>Beschrijving:</b> Specifiek soort object (bijv. schilderij). Als de DefinedTerm een URI bevat, moet die verwijzen naar één van de volgende thesauri: de CHT of AAT.
 - <b>Datatype:</b> [DefinedTerm](#DefinedTerm) en[URL](https://schema.org/URL)
 - <b>Kardinaliteit:</b> 0..* ???
 
@@ -191,7 +191,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:associatedMedia](https://schema.org/associatedMedia)
-<i>Optioneel. </i>
+<i>Optioneel </i>
 - <b>Beschrijving:</b> Gerelateerde media. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObject)
 - <b>Datatype:</b> [MediaObject](#MediaObject)
 - <b>Kardinaliteit:</b> 0..* 
@@ -250,10 +250,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
 - <b>Beschrijving:</b> Actuele juridische status 
-- <b>Waarde:</b> *Waarde moet nog bepaald worden*
+- <b>Waarde:</b> Rijksdienst voor het Cultureel Erfgoed
 
 #### [schema:isPartOf](https://schema.org/isPartOf) (verplicht)
-- <b>Beschrijving:</b> Dataset waartoe het werk behoort
+- <b>Beschrijving:</b> Een dataset is een verzameling van gestructureerde beschrijvingen van objecten en bevat informatie over elk afzonderlijk erfgoedobject
 - <b>Waarde:</b> Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-isPartOf)
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 1..1
@@ -343,7 +343,7 @@ MA.2020.003",
 
 #### [schema:url](https://schema.org/url)
 <i>Aanbevolen</i><br/> 
-- <b>Beschrijving:</b> CollectieNederland.nl toont de gegevens van jouw object. Wanneer een bezoeker meer informatie over het object wil bekijken, kan diegene via deze link naar de webpagina van jouw organisatie gaan. Gebruik bij voorkeur een URI of gebruik een PID als die beschikbaar is.
+- <b>Beschrijving:</b> CollectieNederland.nl toont de gegevens van een object. Wanneer een bezoeker meer informatie over het object wil bekijken, kan diegene via deze link naar de webpagina van de organisatie gaan. Gebruik bij voorkeur een URI of gebruik een PID als die beschikbaar is.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
@@ -357,6 +357,8 @@ MA.2020.003",
 
 #### [schema:license](https://schema.org/license)
 <i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor het gebruiksrecht van het object.</i><br/>
+
 - <b>Beschrijving:</b> rechtenstatement van het object zelf (URI). Uitsluitend rechtenstatements van Rightstatements.org.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
@@ -383,8 +385,7 @@ MA.2020.003",
 
 #### [schema:size](https://schema.org/size)
 <i>Aanbevolen</i><br/>
-- <b>Beschrijving:</b> afmeting van het object in hoogte x breedte x diepte in
-  cm als een waarde.
+- <b>Beschrijving:</b> afmeting van het object in hoogte, breedte, diepte, diameter, schaal, gewicht. 
 - <b>Datatype:</b> string
 - [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-size)
 
@@ -414,7 +415,7 @@ MA.2020.003",
 
 #### [schema:creator](https://schema.org/creator)
 <i>Aanbevolen</i><br/> 
-- <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn. , zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
+- <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 0..1
 <hr/>
@@ -490,31 +491,33 @@ MA.2020.003",
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObject).
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
-<i>Verplicht</i><br/><br/> 
+<i>Aanbevolen. <b>let op!</b>: schema:contentUrl, schema:licence en schema:thumbnailUrl zijn verplicht bij schema:concentUrl</i><br/><br/> 
 - <b>Beschrijving:</b>  Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:thumbnailUrl](https://schema.org/thumbnailUrl)
-<i>Verplicht</i><br/><br/> 
+<i>Verplicht bij schema:concentUrl</i><br/><br/> 
 - <b>Beschrijving:</b>  Directe URI naar de thumbnail, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-thumbnailUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:license](https://schema.org/license)
-<i>Verplicht</i><br/><br/> 
-- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, verplicht als URI.
+<i>Verplicht bij schema:concentUrl</i><br/><br/> 
+- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding volgens CreativeCommons.org (als bronhouder rechthebbende is) of Rightstatements.org (als bronhouder <b>niet</br> de rechthebbende is), verplicht als URI.
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:copyrightHolder](https://schema.org/copyrightHolder)
 <i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor informatie over persoon of organisatie van rechthebbende.</i><br/>
 - <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
 - <b>Datatype:</b>  [Person](#person).
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice)
 <i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor informatie over persoon of organisatie van rechthebbende.</i><br/>
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding, als tekst beschreven.
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
@@ -532,6 +535,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor termen</i><br/>
 - <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames.
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
@@ -557,6 +561,7 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 
 #### [schema:latitude](https://schema.org/latitude)
 <i>Optioneel</i><br/> 
+<br/><i>Uitbreiding NDE-applicatieprofiel voor locatiegegevens.</i><br/>
 - <b>Beschrijving:</b> Breedtegraad van de vindplaats of locatie van vervaardiging. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
