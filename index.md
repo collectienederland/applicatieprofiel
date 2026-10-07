@@ -249,8 +249,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
-- <b>Beschrijving:</b> Actuele juridische status 
-- <b>Waarde:</b> Rijksdienst voor het Cultureel Erfgoed
+- <b>Beschrijving:</b> Actuele juridische status, bijvoorbeel 'Rijksdienst voor het Cultureel Erfgoed' 
 
 #### [schema:isPartOf](https://schema.org/isPartOf) (verplicht)
 - <b>Beschrijving:</b> Een dataset is een verzameling van gestructureerde beschrijvingen van objecten en bevat informatie over elk afzonderlijk erfgoedobject
