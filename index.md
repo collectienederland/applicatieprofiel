@@ -70,18 +70,18 @@ leveren dat iets beschrijft van en/of over het object (CreativeWork).
 
 | *Entiteit* | *Veld* | *Betekenis* | *Verplicht* | *Type* |
 |----|----|----|----|----|
-| MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |
-| CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |
-| CreativeWork | Schema:isPartOf | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
-| CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |
-| CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |
-| CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |
-| CreativeWork | schema:temporal | Periode van vervaardiging | Keuzeveld 2 – sterk aanbevolen | String |
-| CreativeWork | schema:dateCreated | Vervaardigingsdatum | Keuzeveld 2 – sterk aanbevolen | Date |
-| CreativeWork | schema:description | Beschrijving van het object | Keuzeveld 3 – sterk aanbevolen | String |
-| CreativeWork | schema:material | Materiaal | Keuzeveld 3 – sterk aanbevolen | String/URI |
-| CreativeWork | schema:size | Afmetingen | Keuzeveld 3 – sterk aanbevolen | String/QuantitativeValue |
-| CreativeWork | schema:locationCreated | Plaats van productie of vervaardiging | Keuzeveld 3 – sterk aanbevolen | String/URI |
+| Schema:MediaObject | Schema:license | Rechtenstatement afbeelding | Ja, als schema:contentUrl aanwezig is | URI |
+| Schema:CreativeWork | schema:copyrightNotice | Actuele juridische status | Ja, voor Rijksmusea | URI |
+| Schema:CreativeWork | Schema:isPartOf | Beschrijft van welke dataset het object deel uitmaakt | Ja | URI |
+| Schema:CreativeWork | schema:sdDatePublished | Datum van publicatie metadata | Ja | date |
+| Schema:CreativeWork | schema:name | Titel | Keuzeveld 1 – schema:name of schema:additionalType | String |
+| Schema:CreativeWork | schema:additionalType | Soort object | Keuzeveld 1 - schema:name of schema:additionalType | String of URI |
+| Schema:CreativeWork | schema:temporal | Periode van vervaardiging | Keuzeveld 2 – sterk aanbevolen | String |
+| Schema:CreativeWork | schema:dateCreated | Vervaardigingsdatum | Keuzeveld 2 – sterk aanbevolen | Date |
+| Schema:CreativeWork | schema:description | Beschrijving van het object | Keuzeveld 3 – sterk aanbevolen | String |
+| Schema:CreativeWork | schema:material | Materiaal | Keuzeveld 3 – sterk aanbevolen | String/URI |
+| Schema:CreativeWork | schema:size | Afmetingen | Keuzeveld 3 – sterk aanbevolen | String/QuantitativeValue |
+| Schema:CreativeWork | schema:locationCreated | Plaats van productie of vervaardiging | Keuzeveld 3 – sterk aanbevolen | String/URI |
 
 ### Aanbevolen en optionele velden
 
@@ -99,7 +99,7 @@ In de onderstaande tabel staat een overzicht van de velden die worden aanbevolen
 | Schema:CreativeWork | schema:datePublished | datum van uitgave door uitgever | Optioneel | Date | Nee, uitbreiding CN.nl |
 | Schema:CreativeWork | schema:citation | Referentie naar uitgave of bron | Optioneel | String | Nee, uitbreiding CN.nl |
 | Schema:CreativeWork | schema:temporal | Tijdsaanduiding in platte tekst | Optioneel | String | Nee, uitbreiding CN.nl |
-| Schema:CreativeWork | schema:isPartOf/hasPart \>CreativeWork | Deelcollectie | Aanbevolen | URI | Nee, uitbreiding CN.nl |
+| Schema:CreativeWork | schema:isPartOf/hasPart \>CreativeWork | Objectonderdelen | Aanbevolen | URI | Nee, uitbreiding CN.nl |
 | Schema:CreativeWork | schema:genre | Onderwerp | Aanbevolen | String/URI | Ja |
 | Schema:CreativeWork | schema:about | Geassocieerde persoon of concept | Aanbevolen | String/URI | Ja |
 | Schema:CreativeWork | schema:identifier | Objectnummer | Aanbevolen | String/URI | Ja |
@@ -484,11 +484,11 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 }
 ```
 
-#### [schema:hasPart](https://schema.org/hasPart) (Deelcollectie)
+#### [schema:hasPart](https://schema.org/hasPart) (Object onderdelen)
 <i>Optioneel</i><br/>
 <br/><i>Uitbreiding op het NDE-applicatieprofiel voor ensembles.</i><br/>
 
-- <b>Beschrijving:</b> Onderdeel van deelcollectie.
+- <b>Beschrijving:</b> Onderdelen waaruit het object bestaat.
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..*
 - <b>Voorbeeld:</b> 
