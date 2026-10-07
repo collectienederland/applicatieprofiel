@@ -18,6 +18,7 @@ header {
 }
 
 .toc {
+  max-height: calc(100vh - 180px);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
