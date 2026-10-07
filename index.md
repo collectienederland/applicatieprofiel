@@ -40,11 +40,9 @@ welke entiteiten toegestaan zijn in het applicatieprofiel.
 
 CollectieNederland.nl is een Nederlands dienstplatform en toont de collectiedata in het Nederlands. Zorg dat de velden een ‘nl’ of ‘nl-NL’ tag hebben waarin de taal van de data wordt aangegeven.
 
-### Velden
-
 Bij delen van collectiedata aan CollectieNederland.nl wordt gekeken of de minimale velden aanwezig zijn in de data en of de inhoud van deze velden in lijn is met het NDE-applicatieprofiel en de aanvullende bepalingen ten behoeve van CollectieNederland.nl. Als er voor een  veld een afwijking of versoepeling geldt, dan is deze leidend ten opzichte van het NDE-applicatieprofiel. Bij overlap tussen de twee profielen verwijst dit document door naar het NDE-applicatieprofiel. Afwijkingen en versoepelingen worden toegelicht bij de properties. 
 
-#### Minimale publicatievoorwaarden
+### Minimale publicatievoorwaarden
 
 In de onderstaande tabel staat een overzicht van de verplichte velden voor publicatie op CollectieNederland.nl.
 
