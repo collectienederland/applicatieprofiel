@@ -1,4 +1,5 @@
 # CollectieNederland.nl Applicatieprofiel 
+Versie 1.1
 
 ## Inleiding
 
@@ -53,7 +54,7 @@ In de onderstaande tabel staat een overzicht van de verplichte velden voor publi
 | Schema:CreativeWork | schema:name | Titel | Ja | String |
 | Schema:CreativeWork | schema:additionalType | Soort object | Ja, als er geen titel beschikbaar is| String of URI |
 | Schema:CreativeWork | schema:copyrightNotice | Actuele juridische status |  Alleen Rijksmusea | String |
-| Schema:CreativeWork | schema:LEEEG | Conditiestatus | Alleen Rijksmusea| String 
+| Schema:CreativeWork | schema:creativeWorkStatus| Conditiestatus | Alleen Rijksmusea| String 
 
 ### Thesauri-gebruik
 
@@ -164,10 +165,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 
 #### [schema:name](https://schema.org/name) (verplicht)
 <i>Verplicht, als titel niet aanwezig is, dan is [schema:additionalType](https://schema.org/additionalType) verplicht. </i>
-- <b>Beschrijving:</b> titel van het object
+- <b>Beschrijving:</b> titel van het object. Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name)
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
-- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-name) voor meer informatie en voorbeelden.
+- <b>Voorbeeld:</b> De nachtwacht
 
 #### [schema:additionalType](https://schema.org/additionalType) (verplicht)
 <i>Verplicht, als [schema:name](https://schema.org/name) niet aanwezig is. </i>
@@ -233,7 +234,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 #### [schema:alternateName](https://schema.org/alternateName)
 <i>Optioneel</i><br/>
 <br/><i>Uitbreiding NDE-applicatieprofiel om musea de mogelijkheid te geven om objecten meerdere titels mee te geven zoals toegekende titel of originele titel.</i><br/>
-- <b>Beschrijving:</b> alternatieve titel van het object
+- <b>Beschrijving:</b> alternatieve titel van het object.
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
@@ -247,7 +248,16 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
-- <b>Beschrijving:</b> Actuele juridische status, bijvoorbeel 'Rijksdienst voor het Cultureel Erfgoed' 
+- <b>Beschrijving:</b> Actuele juridische status.
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 1..1
+- <b>Voorbeeld:</b> Rijksdienst voor het Cultureel Erfgoed
+
+#### [schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) (verplicht voor Rijksmusea)
+- <b>Beschrijving:</b> fysieke status van het object.
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 1..1
+- <b>Voorbeeld:</b> goed, matig of slecht
 
 #### [schema:isPartOf](https://schema.org/isPartOf) (verplicht)
 - <b>Beschrijving:</b> Een dataset is een verzameling van gestructureerde beschrijvingen van objecten en bevat informatie over elk afzonderlijk erfgoedobject
@@ -276,8 +286,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "hasPart": "MA-2020.001
-MA.2020.002
-MA.2020.003",
+              MA.2020.002
+              MA.2020.003",
 }
 ```
 
@@ -298,10 +308,7 @@ MA.2020.003",
 #### [schema:temporal](https://schema.org/temporal)
 <i>Optioneel</i><br/>
 <br/><i>Uitbreiding op het NDE-applicatieprofiel, vanwege collecties diegeen datering hebben, maar uit een bepaalde periode komen zoals archeologische opgravingen.</i><br/>
-- <b>Beschrijving:</b> onzekerheidsaanduiding datering als vrije tekst, bijvoorbeeld:
-  - Ca.
-  - Circa
-  - Ongeveer
+- <b>Beschrijving:</b> onzekerheidsaanduiding datering als vrije tekst, zoals Ca., Circa of Ongeveer. 
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
@@ -319,10 +326,15 @@ MA.2020.003",
 <br/><i>Uitbreiding op het NDE-applicatieprofiel voor museumcollecties die ook boeken, artikelen of andere objecten hebben in de museumcollectie.</i><br/>
 - <b>Beschrijving:</b> datum waarop het object is uitgegeven door de uitgever.
 - <b>Datatype:</b> date, conform ISO-8601
+- <b>Voorbeeld:</b>
+  - 1955-06-21
+  - 1658-05
+  - 1658
 
 #### [schema:sdDatePublished](https://schema.org/sdDatePublished) (verplicht)
-- <b>Beschrijving:</b> datum van de laatste wijziging van de object-metadata, Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished).
+- <b>Beschrijving:</b> datum van de laatste wijziging van de object-metadata. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sdDatePublished).
 - <b>Datatype:</b> date, conform ISO-8601
+- <b>Voorbeeld:</b> 2026-10-08
 
 #### [schema:citation](https://schema.org/citation)
 <i>Optioneel</i><br/> 
@@ -382,9 +394,11 @@ MA.2020.003",
 
 #### [schema:size](https://schema.org/size)
 <i>Aanbevolen</i><br/>
-- <b>Beschrijving:</b> afmeting van het object in hoogte, breedte, diepte, diameter, schaal, gewicht. 
+- <b>Beschrijving:</b> afmeting van het object in hoogte, breedte, diepte, diameter, schaal, gewicht. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-size).
+
+
 - <b>Datatype:</b> string
-- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-size)
+- <b>Voorbeeld:</b>
 
 ```
 {
@@ -412,10 +426,46 @@ MA.2020.003",
 
 #### [schema:creator](https://schema.org/creator)
 <i>Aanbevolen</i><br/> 
-- <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn, zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
+- <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
 - <b>Datatype:</b> [Person](#Person).
 - <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b> Vincent van Gogh
 <hr/>
+
+#### [schema:identifier](https://schema.org/identifier)
+<i>Aanbevolen</i>
+- <b> Beschrijving:</b> identificatienummer of objectnummer. Bij voorkeur een PID. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-identifier).
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 1..1
+- <b> Voorbeeld:</b> MA-2017-0054</b>
+
+#### [schema:locationCreated](https://schema.org/locationCreated)
+<i>Aanbevolen</i>
+- <b> Beschrijving:</b> plaats van vervaardiging of productie. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-locationCreated).
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 0..*
+- <b> Voorbeeld:</b>
+  - Alkmaar
+  - https://sws.geonames.org/2759899/</b>
+
+#### [schema:dateCreated](https://schema.org/dateCreated)
+<i>Aanbevolen</i><br/> 
+- <b>Beschrijving: vervaardigingsdatum van het object. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-dateCreated).</b>
+- <b>Datatype:</b> date, conform ISO-8601
+- <b>Kardinaliteit:</b> 0..1
+- <b>Voorbeeld:</b>
+  - 1955-06-21
+  - 1658-05
+  - 1658
+
+#### [schema:about](https://schema.org/about)
+<i>Aanbevolen</i>
+- <b> Beschrijving:</b> geassocieerde persoon of concept. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-about).
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 0..*
+- <b> Voorbeeld:</b>
+  - Frank, Anne (1929-1945)
+  - http://data.bibliotheken.nl/id/thes/p107412225
 
 ### [Person](https://schema.org/Person)
 
@@ -423,52 +473,66 @@ MA.2020.003",
 
 #### [schema:name](https://schema.org/name)
 <i>Aanbevolen</i><br/>
-- <b>Beschrijving:</b>  Naam van de persoon of organisatie
+- <b>Beschrijving:</b>  Naam van de persoon of organisatie. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-name).
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 1..1
-- <b>Voorbeeld:</b> Zie [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-name) voor meer informatie en voorbeelden.
+- <b> Voorbeeld:</b>
+  - Frank, Anne (1929-1945)
+  - http://data.bibliotheken.nl/id/thes/p107412225
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b>  Relatie naar een thesaurusterm. Aanbevolen thesauri: RKD artist, CHT, AAT, Geonames.
+- <b>Beschrijving:</b> relatie naar een thesaurusterm. Aanbevolen thesauri: RKD artist, CHT, AAT, Geonames. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sameAs).
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#CreativeWork-sameAs)
+- <b> Voorbeeld:</b>
+  - Frank, Anne (1929-1945)
+  - http://data.bibliotheken.nl/id/thes/p107412225
 
 #### [schema:deathDate](https://schema.org/deathDate)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b>  
-- <b>Datatype:</b> date
+- <b>Beschrijving:</b> sterfdatum van de vervaardiger. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-deathDate). 
+- <b>Datatype:</b> date, conform ISO-8601
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Person-deathDate)
+- <b>Voorbeeld:</b>
+  - 1955-06-21
+  - 1658-05
+  - 1658
 
 #### [schema:birthDate](https://schema.org/birthDate)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Geboortedatum van de vervaardiger 
+- <b>Beschrijving:</b> Geboortedatum van de vervaardiger. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-birthDate). 
 - <b>Datatype:</b> date, conform ISO-8601
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Person-birthDate)
+- <b>Voorbeeld:</b>
+  - 1955-06-21
+  - 1658-05
+  - 1658
 
 #### [schema:birthPlace](https://schema.org/birthPlace)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Geboorteplaats van de vervaardiger.
-- <b>Datatype:</b> [Place](#Place). 
+- <b>Beschrijving:</b> Geboorteplaats van de vervaardiger. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-birthPlace).
+- <b>Datatype:</b> [Place](#Place).
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Person-birthPlace)
+- <b> Voorbeeld:</b>
+  - Alkmaar
+  - https://sws.geonames.org/2759899/</b>
 
 #### [schema:deathPlace](https://schema.org/deathPlace)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Sterfplaats van de vervaadiger. 
+- <b>Beschrijving:</b> Sterfplaats van de vervaadiger. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-deathPlace).
 - <b>Datatype:</b> [Place](#Place). 
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Person-deathPlace)
+- <b> Voorbeeld:</b>
+  - Alkmaar
+  - https://sws.geonames.org/2759899/</b>
+
 
 #### [schema:hasOccupation](https://schema.org/hasOccupation)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Rol van de vervaardiger. Aanbevolen thesauri: CHT of AAT
+- <b>Beschrijving:</b> Rol van de vervaardiger. Aanbevolen thesauri: CHT of AAT. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Person-hasOccupation).
 - <b>Datatype:</b> [Occupation](#Occupation). 
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Person-hasOccupation)
 - <b>Voorbeeld:</b>
 ``` 
 {
@@ -488,19 +552,19 @@ MA.2020.003",
 Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObject).
 
 #### [schema:contentUrl](https://schema.org/contentUrl)
-<i>Aanbevolen. <b>let op!</b>: schema:contentUrl, schema:licence en schema:thumbnailUrl zijn verplicht bij schema:concentUrl</i><br/><br/> 
+<i>Aanbevolen.</i><br/> 
 - <b>Beschrijving:</b>  Directe URI naar het mediabestand, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-contentUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:thumbnailUrl](https://schema.org/thumbnailUrl) (verplicht)
-<i>Verplicht bij schema:concentUrl</i><br/><br/> 
+<i>Verplicht bij schema:concentUrl</i><br/> 
 - <b>Beschrijving:</b>  Directe URI naar de thumbnail, verplicht als geldige URI. <https://docs.nde.nl/schema-profile/#MediaObject-thumbnailUrl>
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
 #### [schema:license](https://schema.org/license) (verplicht)
-<i>Verplicht bij schema:concentUrl</i><br/><br/> 
+<i>Verplicht bij schema:concentUrl</i><br/> 
 - <b>Beschrijving:</b>  Rechtenstatement van de afbeelding volgens CreativeCommons.org (als bronhouder rechthebbende is) of Rightstatements.org (als bronhouder <b>niet</br> de rechthebbende is), verplicht als URI.
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
@@ -511,6 +575,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObje
 - <b>Beschrijving:</b>  Rechthebbende van het mediaobject.
 - <b>Datatype:</b>  [Person](#person).
 - <b>Kardinaliteit:</b> 0..1
+- <b> Voorbeeld:</b> D. de Wit
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice)
 <i>Optioneel</i><br/> 
@@ -525,31 +590,32 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 
 #### [schema:name](https://schema.org/name)
 <i>Aanbevolen</i><br/><br/> 
-- <b>Beschrijving:</b> Naam van de plek. 
+- <b>Beschrijving:</b> Plaatsnaam. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Place-name).
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#Place-name)
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
 <br/><i>Uitbreiding NDE-applicatieprofiel voor termen</i><br/>
-- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames.
+- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference-terms).
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
+- <b>Voorbeeld:</b>:
+  - Leiden
+  - https://www.geonames.org/2751773/leiden.html
 
 #### [schema:addressRegion](https://schema.org/addressRegion)
 <i>Optioneel</i><br/> 
 - <b>Beschrijving:</b> Provincie waar de plek zich bevindt.
 - <b>Datatype:</b>  [AdministrativeArea](#administrativearea)
 - <b>Kardinaliteit:</b> 0..1
+- <b> Voorbeeld:</b> Gelderland
 
 #### [schema:geo](https://schema.org/geo)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> De coördinaten van de plek. 
+- <b>Beschrijving:</b> De coördinaten van de plek. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates).
 - <b>Datatype:</b>  <a href="#geocoordinates">GeoCoordinates</a>
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates)
 <hr/>
 
 ### [GeoCoordinates](https://schema.org/GeoCoordinates)
@@ -559,17 +625,17 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 #### [schema:latitude](https://schema.org/latitude)
 <i>Optioneel</i><br/> 
 <br/><i>Uitbreiding NDE-applicatieprofiel voor locatiegegevens.</i><br/>
-- <b>Beschrijving:</b> Breedtegraad van de vindplaats of locatie van vervaardiging. 
+- <b>Beschrijving:</b> Breedtegraad van de vindplaats of locatie van vervaardiging. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates-latitude).
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-latitude)
+- <b> Voorbeeld:</b> 52.379189
 
 #### [schema:longitude](https://schema.org/longitude)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Lengtegraad van de vindplaats of vervaardiging.
+- <b>Beschrijving:</b> Lengtegraad van de vindplaats of vervaardiging. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#GeoCoordinates-longitude).
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#GeoCoordinates-longitude)
+- <b> Voorbeeld:</b> 52.379189
 <hr/>
 
 ### [AdministrativeArea](https://schema.org/AdministrativeArea)
@@ -596,10 +662,9 @@ Provincie waarin de plek zich bevindt.
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames.
+- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: Geonames. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference-terms).
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
-- [Meer informatie](https://docs.nde.nl/schema-profile/#reference-terms)
 <hr/>
 
 ### [Occupation](https://schema.org/Occupation)
@@ -611,10 +676,11 @@ De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [document
 - <b>Beschrijving:</b> Rol van de vervaardiger. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
+- <b> Voorbeeld:</b> schilder
 
 #### [schema:sameAs](https://schema.org/sameAs)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Relatie naar een thesaurusterm. Aanbevolen thesauri: AAT, CHT.
+- <b>Beschrijving:</b> Relatie naar een thesaurusterm. 
 - <b>Datatype:</b>  URI
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
@@ -632,7 +698,7 @@ De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [document
 
 ### [PropertyValue](https://schema.org/PropertyValue)
 
-IDs, bijvoorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn, kunnen worden toegevoegd door middel van deze PropertyValue klasse.
+IDs, Voorbeeld PIDs of IDs uit het collectiebeheersysteem die voor context belangrijk zijn, kunnen worden toegevoegd door middel van deze PropertyValue klasse.
 
 #### [schema:propertyID](https://schema.org/propertyID)
 <i>Verplicht bij PropertyValue</i><br/>
@@ -658,7 +724,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference
 
 #### [schema:name](https://schema.org/name)
 <i>Optioneel</i><br/>
-- <b>Beschrijving:</b> Naam van de term, bijvoorbeeld de naam van het genre.  
+- <b>Beschrijving:</b> Naam van de term, Voorbeeld de naam van het genre.  
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 0..1
 
