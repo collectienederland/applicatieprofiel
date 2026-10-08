@@ -22,6 +22,7 @@ header {
 
 .toc {
   max-height: calc(100vh - 220px);
+  width: clamp(240px, 22vw, 360px);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 10px;
