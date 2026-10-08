@@ -1,5 +1,5 @@
 # CollectieNederland.nl Applicatieprofiel 
-Versie 1.1
+Versie: 1.1
 
 ## Inleiding
 
