@@ -22,7 +22,8 @@ header {
 
 .toc {
   max-height: calc(100vh - 240px);
-  width: clamp(240px, 22vw, 360px);
+  min-width: 0;
+  max-width: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 10px;
@@ -37,3 +38,8 @@ header footer {
   padding-top: 30px;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: minmax(220px, 20rem) minmax(0, 1fr);
+  gap: 3rem;
+}
