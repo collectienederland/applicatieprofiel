@@ -565,7 +565,7 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#MediaObje
 
 #### [schema:license](https://schema.org/license) (verplicht)
 <i>Verplicht bij schema:concentUrl</i><br/> 
-- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding volgens CreativeCommons.org (als bronhouder rechthebbende is) of Rightstatements.org (als bronhouder <b>niet</br> de rechthebbende is), verplicht als URI.
+- <b>Beschrijving:</b>  Rechtenstatement van de afbeelding volgens CreativeCommons.org (als bronhouder rechthebbende is) of Rightstatements.org (als bronhouder <b>niet</b> de rechthebbende is), verplicht als URI.
 - <b>Datatype:</b>  URI 
 - <b>Kardinaliteit:</b> 1..1
 
