@@ -1,7 +1,7 @@
 # Collectie Nederland: Applicatieprofiel
 Deze repository is de bron voor documentatie over het applicatieprofiel van het vernieuwde platform van [Collectie Nederland](https://collectienederland.nl/). 
 
-## [Applicatie](https://collectienederland.github.io/applicatieprofiel/)
+## [Applicatieprofiel](https://collectienederland.github.io/applicatieprofiel/)
 
 Zie bovenstaande pagina voor de beschrijving van het applicatieprofiel.
 
