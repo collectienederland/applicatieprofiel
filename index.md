@@ -403,7 +403,9 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 ```
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "size": "24,5 × 20,5 x 4 cm"@nl
+  "size": "hoogte 24,5 cm 
+           breedte 20,5 cm
+           diepte 4 cm"@nl
 ```
 
 #### [schema:creditText](https://schema.org/creditText)
