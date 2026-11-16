@@ -64,9 +64,8 @@ Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende the
 
 Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
-<!--```mermaid-->
-<pre class="mermaid">
-
+<!--<pre class="mermaid">-->
+```mermaid
 ---
   config:
     theme: forest
@@ -126,7 +125,7 @@ class postaladdress["PostalAddress"] {
   addressRegion xsd:string
   sameAs xsd:anyURI
 }
-creativework --> "0..1" place: locationCreated
+creativework --> "0..1" place: locationCreated, contentLocation 
 place --> "0..1" geocoor: geo
 place --> "0..1" postaladdress: addressRegion
 
@@ -171,8 +170,8 @@ class propval["PropertyValue"] {
 }
 
 creativework --> "0..*" propval: identifier
-</pre>
-<!--```-->
+```
+<!--</pre>-->
 
 ### [CreativeWork](http://schema.org/CreativeWork)
 
@@ -437,7 +436,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 #### [schema:creator](https://schema.org/creator)
 <i>Aanbevolen</i><br/> 
 - <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
-- <b>Datatype:</b> [Person](#Person).
+- <b>Datatype:</b> [Person](#Person) of [Organization](#Organization).
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
 ``` 
@@ -449,6 +448,12 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
     "name": "Vincent van Gogh"@nl
   }
 ```
+
+#### [schema:contributor](https://schema.org/contributor)
+<i>Optioneel</i><br/> 
+- <b>Beschrijving</b>: persoon die een bijdrage heeft geleverd aan een werk maar niet de vervaardiger van het object is. Dat kan een persoon of organisatie zijn. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-contributor).
+- <b>Datatype:</b> [Person](#Person) of [Organization](#Organization).
+- <b>Kardinaliteit:</b> 0..1
 
 #### [schema:identifier](https://schema.org/identifier)
 <i>Aanbevolen</i>
@@ -499,6 +504,12 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
     "sameAs": "http://data.bibliotheken.nl/id/thes/p107412225"
   }
 ```
+
+#### [schema:contentLocation](https://schema.org/contentLocation)
+<i>Optioneel</i>
+- <b> Beschrijving:</b> plaats die inhoudelijk beschreven wordt in het CreativeWork. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-contentLocation).
+- <b>Datatype:</b> [Place](#Place)
+- <b>Kardinaliteit:</b> 0..1
 
 <hr/>
 
