@@ -1,9 +1,9 @@
 # CollectieNederland.nl Applicatieprofiel 
-Versie: 1.1 (2026.10)
+Versie: 1.1 (2026.11)
 
 ## Inleiding
 
-In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel beschrijft hoe bronhouders het nieuwe datamodel voor Collectienederland.nl kunnen toepassen. Het applicatieprofiel maakt gebruik van [Schema.org](https://schema.org/) als beschrijvende vocabulaire. Dit applicatieprofiel is een uitbreiding op het [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/) ([versie 1.4.0](https://docs.nde.nl/schema-profile/#v1.4.0)) en volgt dit applicatieprofiel grotendeels. Dit document vormt de basis voor de aanlevervoorwaarden van [CollectieNederland.nl](https://www.collectienederland.nl/).
+In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel beschrijft hoe bronhouders het nieuwe datamodel voor Collectienederland.nl kunnen toepassen. Het applicatieprofiel maakt gebruik van [Schema.org](https://schema.org/) als beschrijvende vocabulaire. Het CN.nl applicatieprofiel is een extensie op het [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/) met een aantal uitbreidingen. Dit document vormt de basis voor de aanlevervoorwaarden van [CollectieNederland.nl](https://www.collectienederland.nl/).
 
 Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichte van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder <a href="#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel">Afwijkingen ten opzichte van het NDE applicatieprofiel</a>.
 
@@ -64,8 +64,8 @@ Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende the
 
 Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
-<!--<pre class="mermaid">-->
-```mermaid
+<!--```mermaid-->
+<pre class="mermaid">
 ---
   config:
     theme: forest
@@ -170,8 +170,8 @@ class propval["PropertyValue"] {
 }
 
 creativework --> "0..*" propval: identifier
-```
-<!--</pre>-->
+</pre>
+<!--```-->
 
 ### [CreativeWork](http://schema.org/CreativeWork)
 
