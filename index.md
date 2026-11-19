@@ -1,13 +1,13 @@
 # CollectieNederland.nl Applicatieprofiel 
-Versie: 1.1 (2026.10)
+Versie: 1.1 (2026.11)
 
 ## Inleiding
 
-In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel beschrijft hoe bronhouders het nieuwe datamodel voor Collectienederland.nl kunnen toepassen. Het applicatieprofiel maakt gebruik van [Schema.org](https://schema.org/) als beschrijvende vocabulaire. Dit applicatieprofiel is een uitbreiding op het [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/) ([versie 1.4.0](https://docs.nde.nl/schema-profile/#v1.4.0)) en volgt dit applicatieprofiel grotendeels. Dit document vormt de basis voor de aanlevervoorwaarden van [CollectieNederland.nl](https://www.collectienederland.nl/).
+In deze documentatie wordt het applicatieprofiel beschreven voor CollectieNederland.nl. Dit profiel beschrijft hoe bronhouders het nieuwe datamodel voor Collectienederland.nl kunnen toepassen. Het applicatieprofiel maakt gebruik van [Schema.org](https://schema.org/) als beschrijvende vocabulaire. Het CN.nl applicatieprofiel is een extensie op het [NDE-applicatieprofiel](https://docs.nde.nl/schema-profile/) met een aantal uitbreidingen. Dit document vormt de basis voor de aanlevervoorwaarden van [CollectieNederland.nl](https://www.collectienederland.nl/).
 
-Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichte van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn terug te vinden onder <a href="#afwijkingen-ten-opzichte-van-het-nde-applicatieprofiel">Afwijkingen ten opzichte van het NDE applicatieprofiel</a>.
+Op enkele punten wijkt het applicatieprofiel voor CollectieNederland.nl af van het NDE-applicatieprofiel. Het gaat hier altijd om versoepelingen en aanvullingen ten op zichte van het NDE-applicatieprofiel, nooit om striktere eisen. Deze punten zijn toegelicht in het <a href="#datamodel">datamodel</a>.
 
-De velden die minimaal nodig zijn om data aan te delen aan CollectieNederland.nl staan genoteerd onder <a href="#minimale-en-sterk-aanbevolen-velden">Minimale en sterk aanbevolen velden</a>. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder <a href="#thesauri-gebruik">Thesauri-gebruik</a>.
+De velden die minimaal nodig zijn om data aan te delen aan CollectieNederland.nl staan beschreven onder <a href="#minimale-publicatievoorwaarden">Minimale Publicatievoorwaarden</a>. De thesauri die CollectieNederland.nl aanhoudt zijn terug te vinden onder <a href="#thesauri-gebruik">Thesauri-gebruik</a>.
 
 ### Definities
 
@@ -62,7 +62,7 @@ Wanneer er gebruikt gemaakt wordt van thesaurustermen dan worden de volgende the
 
 ## Datamodel
 
-Afwijkingen van het NDE-applicatieprofiel zijn gemarkeerd door middel van een asterisk (\*) en zijn met uitleg terug te vinden in de bovenstaande sectie 1.2.5. Hieronder is een overzicht van het datamodel te zien. Als centrale klasse word [CreativeWork](https://schema.org/CreativeWork) gebruikt.
+Afwijkingen van het NDE-applicatieprofiel zijn voorzien van een toelichting. Hieronder is een klassediagram van het datamodel te zien. Als centrale klasse voor een object wordt [CreativeWork](https://schema.org/CreativeWork) gebruikt.
 
 <!--```mermaid-->
 <pre class="mermaid">
@@ -83,7 +83,6 @@ class creativework["CreativeWork"] {
   datePublished xsd:string 
   dateCreated xsd:string 
   description xsd:string 
-  isPartOf xsd:anyURI 
   license xsd:string 
   name xsd:string 
   publisher xsd:string 
@@ -93,8 +92,12 @@ class creativework["CreativeWork"] {
   temporal xsd:string 
   url xsd:anyURI 
 }
+creativework --> "0..*" creativework: hasPart (isPartOf)
 
-creativework --> "0..*" creativework: hasPart
+class dataset["Dataset"] {
+  @id xsd:anyURI
+}
+creativework --> "1..1" dataset: isPartOf
 
 class additional["DefinedTerm, URL"] {
   name xsd:string
@@ -107,6 +110,7 @@ class defterm["DefinedTerm"] {
   sameAs xsd:anyURI
 }
 creativework --> "0..*" defterm: genre, about, material, creativeWorkStatus
+
 class place["Place"] {
   name xsd:string
   sameAs xsd:anyURI
@@ -117,13 +121,13 @@ class geocoor["GeoCoordinates"] {
   longitude xsd:string
 }
 
-class adminarea["AdministrativeArea"] {
-  name xsd:string
+class postaladdress["PostalAddress"] {
+  addressRegion xsd:string
   sameAs xsd:anyURI
 }
-creativework --> "0..1" place: locationCreated
+creativework --> "0..1" place: locationCreated, contentLocation 
 place --> "0..1" geocoor: geo
-place --> "0..1" adminarea: addressRegion
+place --> "0..1" postaladdress: address
 
 class person["Person"]{
   name xsd:string 
@@ -131,9 +135,18 @@ class person["Person"]{
   deathDate xsd:string  
   birthDate xsd:string 
 }
-creativework --> "0..1" person: creator
+creativework --> "0..1" person: creator, contributor, copyrightHolder
 person --> "0..1" place: birthPlace
 person --> "0..1" place: deathPlace
+
+class organization["Organization"]{
+  name xsd:string 
+  sameAs xsd:anyURI 
+}
+
+organization --> place: location
+creativework --> organization: creator, contributor, copyrightHolder
+mediaobject --> "0..1" organization:copyrightHolder
 
 class occupation["Occupation"]{
   name xsd:string 
@@ -149,7 +162,6 @@ class mediaobject["MediaObject"] {
 }
 creativework --> "0..*" mediaobject: associatedMedia (encodesCreativeWork)
 mediaobject --> "0..1" person:copyrightHolder
-creativework --> "0..1" person:copyrightHolder
 
 class propval["PropertyValue"] {
   propertyID xsd:string
@@ -173,9 +185,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Voorbeeld:</b> 
 ```
 {
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "De nachtwacht"@nl
+  "name": "De nachtwacht"
 }
 ```
 
@@ -186,11 +197,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..*
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "additionalType": {
     "@type": ["DefinedTerm", "URL"],
-    "name": "tekening"@nl,
+    "name": "tekening",
     "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/eb9e1e5b-b319-4519-a4f5-0dd26dbf4524"
   }
 ```
@@ -208,11 +218,15 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "name": "De Schreeuw"@nl,
-  "alternateName": "Skrik"@no
+```"@type": "CreativeWork",
+  "name": {
+        "@language": "nl",
+        "@value": "De Schreeuw"
+  },
+  "alternateName": {
+        "@language": "no",
+        "@value": "Skrik"
+  }
 ```
 
 #### [schema:copyrightNotice](https://schema.org/copyrightNotice) (verplicht voor Rijksmusea)
@@ -228,9 +242,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Voorbeeld:</b> 
 ``` 
 {
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "creativeWorkStatus": "goed"@nl
+  "creativeWorkStatus": "goed"
 }
 ```
 
@@ -241,11 +254,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..* 
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "genre": {
     "@type": "DefinedTerm",
-    "name": "bevrijding"@nl,
+    "name": "bevrijding",
     "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/ac43187b-02fa-45ab-b1d6-86a02860db1f"
   }
 ```
@@ -258,9 +270,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..*
 - <b>Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
+```"@type": "CreativeWork",
   "hasPart": [ "https://data.collectienederland.nl/werk/id/MA-2020.001",
               "https://data.collectienederland.nl/werk/id/MA.2020.002",
               "https://data.collectienederland.nl/werk/id/MA.2020.003" ]
@@ -272,9 +282,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 1..1
 - <b>Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
+```"@type": "CreativeWork",
   "isPartOf": "https://linkeddata.cultureelerfgoed.nl/rce/datacatalog/id/dataset/db6193aa-84af-3edf-90fd-074a0a11248d"
 ```
 
@@ -285,11 +293,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..* 
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "material": {
     "@type": "DefinedTerm",
-    "name": "metalen"@nl,
+    "name": "metalen",
     "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/b9fd0887-297b-4bab-bea5-cb288d068816"
   }  
 ```
@@ -302,9 +309,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "publisher": "Uitgeverij Noordzon"@nl
+  "publisher": "Uitgeverij Noordzon"
 ```
 
 #### [schema:temporal](https://schema.org/temporal)
@@ -315,10 +321,9 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@id": "https://www.wikidata.org/wiki/Q185372",
   "@type": "CreativeWork",
-  "temporal": "circa 1665"@nl
+  "temporal": "circa 1665"
 ```
 
 #### [schema:datePublished](https://schema.org/datePublished)
@@ -328,7 +333,6 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> date, conform ISO-8601
 - <b>Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "datePublished": "1658"
 ```
@@ -339,7 +343,6 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Voorbeeld:</b> 
 ```
 {
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "sdDatePublished": "2026-10-08"
 }
@@ -352,9 +355,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> string
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "citation": "van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near East. OMROL 69, blz. 13"@nl
+  "citation": "van den Boorn, G.P.F. and Van Es, M.J. (1989), Recent Acquisitions: II. The Near East. OMROL 69, blz. 13"
 ```
 
 #### [schema:url](https://schema.org/url)
@@ -364,7 +366,6 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "url": "http://hdl.handle.net/10934/RM0001.COLLECT.250239"
 ```
@@ -377,7 +378,6 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "license": "http://rightsstatements.org/vocab/InC/1.0/"
 ```
@@ -389,9 +389,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "description": "Schilderij van een ridderzaal met een tafel met buffet. Aan beide zijde van de tafel een ridder in harnas."@nl
+  "description": "Schilderij van een ridderzaal met een tafel met buffet. Aan beide zijde van de tafel een ridder in harnas."
 ```
 
 #### [schema:size](https://schema.org/size)
@@ -401,11 +400,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..*
 - <b>Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "size": "hoogte 24,5 cm 
            breedte 20,5 cm
-           diepte 4 cm"@nl
+           diepte 4 cm"
 ```
 
 #### [schema:creditText](https://schema.org/creditText)
@@ -415,27 +413,29 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "creditText": "In bruikleen van Fam. de Wit."@nl
+```"@type": "CreativeWork",
+  "creditText": "In bruikleen van Fam. de Wit."
 ```
 
 #### [schema:creator](https://schema.org/creator)
 <i>Aanbevolen</i><br/> 
 - <b>Beschrijving</b>: de vervaardiger van het object. Dat kan een persoon of organisatie zijn. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-creator).
-- <b>Datatype:</b> [Person](#Person).
+- <b>Datatype:</b> [Person](#Person) of [Organization](#Organization).
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
+```"@type": "CreativeWork",
   "creator"
   {
     "@type": "Person",
-    "name": "Vincent van Gogh"@nl
+    "name": "Vincent van Gogh"
   }
 ```
+
+#### [schema:contributor](https://schema.org/contributor)
+<i>Optioneel</i><br/> 
+- <b>Beschrijving</b>: persoon die een bijdrage heeft geleverd aan een werk maar niet de vervaardiger van het object is. Dat kan een persoon of organisatie zijn. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-contributor).
+- <b>Datatype:</b> [Person](#Person) of [Organization](#Organization).
+- <b>Kardinaliteit:</b> 0..1
 
 #### [schema:identifier](https://schema.org/identifier)
 <i>Aanbevolen</i>
@@ -443,12 +443,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> [PropertyValue](#propertyvalue)
 - <b>Kardinaliteit:</b> 0..*
 - <b> Voorbeeld:</b> 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
+```"@type": "CreativeWork",
   "identifier": {
     "@type": "PropertyValue",
-    "propertyID": "Catalogusnummer"@nl,
+    "propertyID": "Catalogusnummer",
     "value": "MA-2017-0054<"
   }
 ```
@@ -466,7 +464,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
 ```
-"@context": "https://schema.org",
+
   "@type": "CreativeWork",
   "dateCreated": "1955-06-21"
 ```
@@ -478,14 +476,19 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..*
 - <b> Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "CreativeWork",
   "about": {
     "@type": "DefinedTerm",
-    "name": "Frank, Anne"@nl,
+    "name": "Frank, Anne",
     "sameAs": "http://data.bibliotheken.nl/id/thes/p107412225"
   }
 ```
+
+#### [schema:contentLocation](https://schema.org/contentLocation)
+<i>Optioneel</i>
+- <b> Beschrijving:</b> plaats die inhoudelijk beschreven wordt in het CreativeWork. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-contentLocation).
+- <b>Datatype:</b> [Place](#Place)
+- <b>Kardinaliteit:</b> 0..1
 
 <hr/>
 
@@ -506,9 +509,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b> Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Frank, Anne"@nl,
+  "name": "Frank, Anne",
   "sameAs": "http://data.bibliotheken.nl/id/thes/p107412225"
 ```
 
@@ -524,9 +526,7 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> date, conform ISO-8601
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
-```
-  "@context": "https://schema.org",
-  "@type": "Person",
+```"@type": "Person",
   "birthDate": "1955-06-21"
 ```  
 
@@ -543,11 +543,10 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Kardinaliteit:</b> 0..1
 - <b> Voorbeeld:</b>
 ```
-  "@context": "https://schema.org",
   "@type": "Person",
   "deathPlace": {
     "@type": "Place",
-    "name": "Alkmaar"@nl,
+    "name": "Alkmaar",
     "sameAs": "https://www.geonames.org/2759899"
   }
 ```
@@ -558,15 +557,36 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> [Occupation](#Occupation). 
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
-``` 
-  "@context": "https://schema.org",
-  "@type": "Person",
+```"@type": "Person",
   "hasOccupation": {
     "@type": "Occupation",
-    "name": "ontwerper"@nl,
+    "name": "ontwerper",
     "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/e8f8e3d0-761f-4dda-b846-64f860cdc670"
   }
 ```
+<hr/>
+
+### [Organisation](https://schema.org/Organization)
+
+ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Organization).
+
+#### [schema:name](https://schema.org/name)
+<i>Verplicht bij Organisation</i><br/>
+- <b>Beschrijving:</b>  Naam van de persoon of organisatie. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Organization-name).
+- <b>Datatype:</b> string
+- <b>Kardinaliteit:</b> 1..*
+
+#### [schema:sameAs](https://schema.org/sameAs)
+<i>Optioneel</i><br/> 
+- <b>Beschrijving:</b> relatie naar een thesaurusterm. Aanbevolen thesauri: RKD artist, CHT, AAT, Geonames. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#CreativeWork-sameAs).
+- <b>Datatype:</b> URI
+- <b>Kardinaliteit:</b> 0..1
+
+#### [schema:location](https://schema.org/location)
+<i>Optioneel</i><br/> 
+- <b>Beschrijving:</b> relatie naar een thesaurusterm. Aanbevolen thesauri: RKD artist, CHT, AAT, Geonames. Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#Organization-location).
+- <b>Datatype:</b> [Place](#Place)
+- <b>Kardinaliteit:</b> 0..1
 
 <hr/>
 
@@ -623,16 +643,15 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/Place).
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>:
 ```
-  "@context": "https://schema.org",
   "@type": "Place",
-  "name": "Leiden"@nl,
+  "name": "Leiden",
   "sameAs": "https://www.geonames.org/2759899"
 ```
 
-#### [schema:addressRegion](https://schema.org/addressRegion)
+#### [schema:address](https://schema.org/address)
 <i>Optioneel</i><br/> 
-- <b>Beschrijving:</b> Provincie waar de plek zich bevindt.
-- <b>Datatype:</b>  [AdministrativeArea](#administrativearea)
+- <b>Beschrijving:</b> Aanvullende informatie over de locatie.
+- <b>Datatype:</b>  [PostalAddress](#postaladdress)
 - <b>Kardinaliteit:</b> 0..1
 
 #### [schema:geo](https://schema.org/geo)
@@ -659,9 +678,7 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 - <b>Datatype:</b>  string of nummer
 - <b>Kardinaliteit:</b> 1..1
 - <b> Voorbeeld:</b> 52.379189
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
+```"@type": "CreativeWork",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "52.379189",
@@ -670,23 +687,22 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 ```
 <hr/>
 
-### [AdministrativeArea](https://schema.org/AdministrativeArea)
+### [PostalAddress](https://schema.org/PostalAddress)
 
-Provincie waarin de plek zich bevindt. 
+Provincie of gebied waarin de plek zich bevindt. 
 
-#### [schema:name](https://schema.org/name)
-<i>Verplicht bij AdministrativeArea</i><br/>
-- <b>Beschrijving:</b> Naam van de plek. 
+#### [schema:addressRegion](https://schema.org/name)
+<i>Verplicht bij PostalAddress</i><br/>
+- <b>Beschrijving:</b> Naam van het gebied of provincie. 
 - <b>Datatype:</b>  string
 - <b>Kardinaliteit:</b> 1..1
 - <b>Voorbeeld:</b>
 
-``` 
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "addressRegion": {
-    "@type": "AdministrativeArea",
-    "name": "Zuid-Holland"@nl,
+```"@type": "Place",
+  "name": "Amersfoort",
+  "address": {
+    "@type": "PostalAdress",
+    "addressRegion": "Utrecht",
   } 
 ```
 
@@ -716,7 +732,6 @@ De rol van de vervaardiger van het object, bv. ‘schilder’. Zie ook [document
 - <b>Voorbeeld:</b> 
 
 ```
-  "@context": "https://schema.org",
   "@type": "Occupation",
   "name": "Fotograaf",
   "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/fa108e11-e409-4a69-938e-1c1e66927c13",
@@ -763,7 +778,6 @@ Zie ook [documentatie van het NDE](https://docs.nde.nl/schema-profile/#reference
 - <b>Kardinaliteit:</b> 0..1
 
 ```
-  "@context": "https://schema.org",
   "@type": "DefinedTerm"
   "name": "Aquarelverf",
   "sameAs": "https://data.cultureelerfgoed.nl/term/id/cht/152a6b74-0549-4e53-aec0-f8209db88b86"
