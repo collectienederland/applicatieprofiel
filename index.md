@@ -218,7 +218,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "name": {
         "@language": "nl",
         "@value": "De Schreeuw"
@@ -270,7 +271,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 0..*
 - <b>Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "hasPart": [ "https://data.collectienederland.nl/werk/id/MA-2020.001",
               "https://data.collectienederland.nl/werk/id/MA.2020.002",
               "https://data.collectienederland.nl/werk/id/MA.2020.003" ]
@@ -282,7 +284,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> URI
 - <b>Kardinaliteit:</b> 1..1
 - <b>Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+"@type": "CreativeWork",
   "isPartOf": "https://linkeddata.cultureelerfgoed.nl/rce/datacatalog/id/dataset/db6193aa-84af-3edf-90fd-074a0a11248d"
 ```
 
@@ -413,7 +416,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> string
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "creditText": "In bruikleen van Fam. de Wit."
 ```
 
@@ -423,7 +427,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> [Person](#Person) of [Organization](#Organization).
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "creator"
   {
     "@type": "Person",
@@ -443,7 +448,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> [PropertyValue](#propertyvalue)
 - <b>Kardinaliteit:</b> 0..*
 - <b> Voorbeeld:</b> 
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "identifier": {
     "@type": "PropertyValue",
     "propertyID": "Catalogusnummer",
@@ -526,7 +532,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> date, conform ISO-8601
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
-```"@type": "Person",
+```
+  "@type": "Person",
   "birthDate": "1955-06-21"
 ```  
 
@@ -557,7 +564,8 @@ De centrale klasse in het CollectieNederland.nl-applicatieprofiel. Met deze klas
 - <b>Datatype:</b> [Occupation](#Occupation). 
 - <b>Kardinaliteit:</b> 0..1
 - <b>Voorbeeld:</b>
-```"@type": "Person",
+```
+  "@type": "Person",
   "hasOccupation": {
     "@type": "Occupation",
     "name": "ontwerper",
@@ -678,7 +686,8 @@ Geografische coördinaten van een plek. Onderstaande properties zijn verplicht a
 - <b>Datatype:</b>  string of nummer
 - <b>Kardinaliteit:</b> 1..1
 - <b> Voorbeeld:</b> 52.379189
-```"@type": "CreativeWork",
+```
+  "@type": "CreativeWork",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "52.379189",
@@ -698,7 +707,8 @@ Provincie of gebied waarin de plek zich bevindt.
 - <b>Kardinaliteit:</b> 1..1
 - <b>Voorbeeld:</b>
 
-```"@type": "Place",
+```
+  "@type": "Place",
   "name": "Amersfoort",
   "address": {
     "@type": "PostalAdress",
